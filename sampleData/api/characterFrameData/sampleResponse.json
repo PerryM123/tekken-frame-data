@@ -1,0 +1,54 @@
+{
+  "name": "Heihachi",
+  "description": "Heihachi is the ________",
+  "moves": [
+    {
+      "input": "1",
+      "startUp": 10,
+      "hitType": "H",
+      "damage": 7,
+      "block": 1,
+      "blockSymbol": "-",
+      "hit": 8,
+      "hitSymbol": "+",
+      "counter": 8,
+      "counterSymbol": "+"
+    },
+    {
+      "input": "1,1",
+      "startUp": 11,
+      "hitType": "H",
+      "damage": 7,
+      "block": 1,
+      "blockSymbol": "+",
+      "hit": 8,
+      "hitSymbol": "+",
+      "counter": 8,
+      "counterSymbol": "+"
+    },
+    {
+      "input": "1,2",
+      "startUp": 13,
+      "hitType": "H",
+      "damage": 7,
+      "block": 1,
+      "blockSymbol": "+",
+      "hit": 8,
+      "hitSymbol": "+",
+      "counter": 8,
+      "counterSymbol": "+"
+    },
+    {
+      "input": "1,1,2",
+      "startUp": 10,
+      "hitType": "H",
+      "damage": 7,
+      "block": 1,
+      "blockSymbol": "+",
+      "hit": 8,
+      "hitSymbol": "+",
+      "counter": 8,
+      "counterSymbol": "+"
+    }
+  ]
+}
