@@ -8,10 +8,12 @@ TODO: ここにキャプチャーを貼り付ける
 
 ## Getting Started
 
-git clone git@github.com:PerryM123/tekken-frame-data.git
-cd tekken-frame-data
-yarn
-yarn dev
+```
+$ git clone git@github.com:PerryM123/tekken-frame-data.git
+$ cd tekken-frame-data
+$ yarn
+$ yarn dev
+```
 
 ## Techonogies being used
 
