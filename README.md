@@ -1,10 +1,14 @@
 # Tekken Frame Data
 
+## なぜ作ってるか
+
 最近鉄拳 7 という格闘ゲームにハマっててキャラの攻撃内容がいろんなサイトに記載されてるけど若干見にくいので見やすくなるようなフレームデータ表を作成しました。
+
+## 目的
 
 Next.js と express.js と mysql の練習のために作成してます。
 
-TODO: ここにキャプチャーを貼り付ける
+![alt text](./sampleData/sample.png)
 
 ## Getting Started
 
