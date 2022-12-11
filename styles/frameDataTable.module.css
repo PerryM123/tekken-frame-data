@@ -1,0 +1,44 @@
+.frameDataArea {
+  padding: 0 10px 25px;
+}
+.frameDataTable {
+  width: 100%;
+  border-spacing: 0;
+  text-align: center;
+}
+.frameDataTable th {
+  color: white;
+  background: black;
+}
+
+.frameDataTable th,
+.frameDataTable td {
+  height: 40px;
+}
+
+.frameDataTable td:hover {
+  opacity: 0.6;
+  background: #f5f5dc;
+}
+
+.frameDataTable tr:nth-of-type(even) {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.frameDataTable td:last-child {
+  border-right: 1px solid #000;
+}
+
+.frameDataTable td {
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.changeOrder {
+  cursor: pointer;
+}
+.changeOrder:hover {
+  opacity: 0.8;
+}
+.frameDataTable tr:hover {
+  background-color: rgb(0 0 0 / 30%);
+}
