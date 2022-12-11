@@ -13,27 +13,21 @@ interface Props {
   frameData: IFrameData[];
 }
 
-const handleChangeOrder = (
-  frameData: IFrameData[],
-  frameDataState?: IFrameData[]
-) => {
+const handleChangeOrder = (frameData: IFrameData[]) => {
   console.log("handleChangeOrder: frameData: ", frameData);
-  console.log("handleChangeOrder: frameDataState: ", frameDataState);
 };
+
+// TODO: Add redux store soon
 
 const FrameDataTable: NextPage<Props> = (props) => {
   const { frameData, title } = props;
-  const [frameDataState, setFrameData] = useState<IFrameData[]>();
-  setFrameData(frameData);
   return (
     <div className={styles.frameDataArea}>
       <h2>{title}</h2>
       <table className={styles.frameDataTable}>
         <tbody>
           <FrameDataTableHeader
-            handleChangeOrder={() =>
-              handleChangeOrder(frameData, frameDataState)
-            }
+            handleChangeOrder={() => handleChangeOrder(frameData)}
           />
           {frameData.map((item, index) => {
             return <FrameDataRow frameData={item} key={index} />;
