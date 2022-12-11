@@ -4,7 +4,7 @@ import {
   ICharacterListResponse,
 } from "../interfaces/frameData";
 import styles from "../styles/index.module.css";
-import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/sampleResponse.json";
+import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/heihachi/sampleResponse.json";
 import characterListSampleResponse from "./../sampleData/api/allCharacters/sampleResponse.json";
 
 export default function Home() {

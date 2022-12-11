@@ -1,18 +1,16 @@
 // libraries
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEventHandler } from "react";
 import { NextPage } from "next";
 // interface
 // style
 import styles from "../styles/frameDataTableHeader.module.css";
 
-interface Props {}
-
-// TODO: move to parent to have the data be changeable
-const handleChangeOrder = () => {
-  console.log("handleChangeOrder");
-};
+interface Props {
+  handleChangeOrder: MouseEventHandler | undefined;
+}
 
 const FrameDataTableHeader: NextPage<Props> = (props) => {
+  const { handleChangeOrder } = props;
   return (
     <tr>
       <th>Input</th>
