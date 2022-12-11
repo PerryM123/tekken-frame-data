@@ -4,15 +4,44 @@ export const HitType = {
   Low: "L",
 };
 
+export const symbolType = {
+  Plus: "+",
+  Minus: "-",
+  Blank: "",
+};
+
 export interface IFrameData {
   input: string;
   startUp: number;
-  hitType: "H" | "M" | "L";
+  // TODO
+  // hitType: "H" | "M" | "L";
+  hitType: string;
   damage: number;
   block: number;
-  blockSymbol: "+" | "-" | "";
+  // TODO
+  // blockSymbol: "+" | "-" | "";
+  blockSymbol: string;
   hit: number;
-  hitSymbol: "+" | "-" | "";
+  // TODO
+  // hitSymbol: "+" | "-" | "";
+  hitSymbol: string;
   counter: number;
-  counterSymbol: "+" | "-" | "";
+  // TODO
+  // counterSymbol: "+" | "-" | "";
+  counterSymbol: string;
+}
+
+export interface ICharacterFrameDataResponse {
+  name: string;
+  description: string;
+  moves: IFrameData[];
+}
+
+export interface ICharacterListResponse {
+  characters: ICharacterItem[];
+}
+
+export interface ICharacterItem {
+  name: string;
+  isEntryComplete: boolean;
 }

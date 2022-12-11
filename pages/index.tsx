@@ -1,79 +1,45 @@
 import FrameDataTable from "../components/FrameDataTable";
-import { IFrameData } from "../interfaces/frameData";
+import {
+  ICharacterFrameDataResponse,
+  ICharacterListResponse,
+} from "../interfaces/frameData";
 import styles from "../styles/index.module.css";
+import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/sampleResponse.json";
+import characterListSampleResponse from "./../sampleData/api/allCharacters/sampleResponse.json";
 
 export default function Home() {
   const handleFrameDataSelector = () => {
     console.log("handleFrameDataSelector");
   };
   // TODO: change to JSON data soon
-  const frameDataTest: IFrameData[] = [
-    {
-      input: "1",
-      startUp: 10,
-      hitType: "H",
-      damage: 7,
-      block: 1,
-      blockSymbol: "-",
-      hit: 8,
-      hitSymbol: "+",
-      counter: 8,
-      counterSymbol: "+",
-    },
-    {
-      input: "1,1",
-      startUp: 11,
-      hitType: "H",
-      damage: 7,
-      block: 1,
-      blockSymbol: "+",
-      hit: 8,
-      hitSymbol: "+",
-      counter: 8,
-      counterSymbol: "+",
-    },
-    {
-      input: "1,2",
-      startUp: 13,
-      hitType: "H",
-      damage: 7,
-      block: 1,
-      blockSymbol: "+",
-      hit: 8,
-      hitSymbol: "+",
-      counter: 8,
-      counterSymbol: "+",
-    },
-    {
-      input: "1,1,2",
-      startUp: 10,
-      hitType: "H",
-      damage: 7,
-      block: 1,
-      blockSymbol: "+",
-      hit: 8,
-      hitSymbol: "+",
-      counter: 8,
-      counterSymbol: "+",
-    },
-  ];
+  const frameDataSample: ICharacterFrameDataResponse =
+    characterFrameDataSampleData;
+  const characterListSample: ICharacterListResponse =
+    characterListSampleResponse;
+
   return (
     <div>
       <nav>
         <h3>character list</h3>
         <ul>
-          <li>
-            <a href="#">Heihachi</a>
-          </li>
-          <li>
-            <a href="#">Jin</a>
-          </li>
-          <li>
-            <a href="#">Panda</a>
-          </li>
-          <li>
-            <a href="#">Panda</a>
-          </li>
+          {characterListSample.characters.map((item) => {
+            return (
+              <li>
+                {!item.isEntryComplete ? (
+                  <a className={styles.entryNotComplete} href="#">
+                    {item.name}
+                  </a>
+                ) : (
+                  <a className={styles.selectable} href="#">
+                    {item.name}
+                  </a>
+                )}
+                {!item.isEntryComplete ? (
+                  <span className={styles.wip}> (WIP)</span>
+                ) : null}
+              </li>
+            );
+          })}
         </ul>
       </nav>
       <h1>Heihachi's Frame Data</h1>
@@ -87,28 +53,15 @@ export default function Home() {
           </div>
         </li>
       </ul>
-      <FrameDataTable title="Standing" frameData={frameDataTest} />
-      <div className={styles.frameDataArea}>
-        <h2>Advancing</h2>
-      </div>
-      <div className={styles.frameDataArea}>
-        <h2>Dashing</h2>
-      </div>
-      <div className={styles.frameDataArea}>
-        <h2>Poking</h2>
-      </div>
-      <div className={styles.frameDataArea}>
-        <h2>Standing to Crouch</h2>
-      </div>
-      <div className={styles.frameDataArea}>
-        <h2>While Crouching</h2>
-      </div>
-      <div className={styles.frameDataArea}>
-        <h2>While Standing</h2>
-      </div>
-      <div className={styles.frameDataArea}>
-        <h2>Jumping</h2>
-      </div>
+      <FrameDataTable title="Standing" frameData={frameDataSample.moves} />
+      {/* TODO: 以下の攻撃内容も追加必須 */}
+      {/* <FrameDataTable title="Advancing" frameData={frameDataSample.moves} /> */}
+      {/* <FrameDataTable title="Dashing" frameData={frameDataSample.moves} /> */}
+      {/* <FrameDataTable title="Poking" frameData={frameDataSample.moves} /> */}
+      {/* <FrameDataTable title="Standing to Crouch" frameData={frameDataSample.moves} /> */}
+      {/* <FrameDataTable title="While Crouching" frameData={frameDataSample.moves} /> */}
+      {/* <FrameDataTable title="While Standing" frameData={frameDataSample.moves} /> */}
+      {/* <FrameDataTable title="Jumping" frameData={frameDataSample.moves} /> */}
     </div>
   );
 }
