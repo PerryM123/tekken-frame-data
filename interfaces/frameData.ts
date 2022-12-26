@@ -31,13 +31,13 @@ export interface IFrameData {
   counterSymbol: string;
 }
 
-export interface ICharacterFrameDataResponse {
+export interface ICharacterFrameData {
   name: string;
   description: string;
   moves: IFrameData[];
 }
 
-export interface ICharacterListResponse {
+export interface ICharacterList {
   characters: ICharacterItem[];
 }
 
