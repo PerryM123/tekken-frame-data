@@ -20,6 +20,13 @@ export type ReduxStore = Store<StoreState>;
 
 const masterReducer = (state: any, action: any) => {
   console.log("function: masterReducer");
+  console.log("masterReducer: state: ", state);
+  console.log("masterReducer: action: ", action);
+  if (!state || !action) {
+    console.log("masterReducer: return early");
+    return;
+  }
+
   if (action.Type === HYDRATE) {
     console.log("function: masterReducer: action.Type === HYDRATE");
     const nextState = {
@@ -31,20 +38,15 @@ const masterReducer = (state: any, action: any) => {
     return nextState;
   } else {
     console.log("function: masterReducer: ELSE");
-    return { frameDataInfo: frameDataSlice.reducer };
+    return;
   }
 };
 
-// const middlewareList = [...getDefaultMiddleware(), logger];
 export const createStore = configureStore({
-  reducer: masterReducer,
-  // TODO: middleware追加
-  // middleware: middlewareList,
+  reducer: {
+    frameDataInfo: frameDataSlice.reducer,
+  },
   devTools: true,
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({
-  //     serializableCheck: false,
-  //   }),
   middleware: getDefaultMiddleware(),
 });
 

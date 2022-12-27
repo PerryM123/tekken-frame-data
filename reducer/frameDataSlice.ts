@@ -14,7 +14,11 @@ export type FrameDataState = {
   moves: [];
 };
 
-export const initialState: ICharacterFrameData = {};
+export const initialState: ICharacterFrameData = {
+  name: "",
+  description: "",
+  moves: [],
+};
 
 const frameDataSlice = createSlice({
   name: "frameDataInfo",
@@ -24,9 +28,9 @@ const frameDataSlice = createSlice({
       console.log("function: loadFrameDataInfo");
       // TODO: APIができたらこの辺API送信する予定
       const frameDataSample: ICharacterFrameData = characterFrameDataSampleData;
-      // state.name = frameDataSample.name;
-      // state.description = frameDataSample.description;
-      // state.moves = frameDataSample.moves;
+      state.name = frameDataSample.name;
+      state.description = frameDataSample.description;
+      state.moves = frameDataSample.moves;
       console.log("function: state: ", state);
     },
   },
