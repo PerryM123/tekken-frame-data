@@ -32,9 +32,9 @@ export interface IFrameData {
 }
 
 export interface ICharacterFrameData {
-  name: string;
-  description: string;
-  moves: IFrameData[];
+  // name: string;
+  // description: string;
+  // moves: IFrameData[];
 }
 
 export interface ICharacterList {

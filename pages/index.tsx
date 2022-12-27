@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import FrameDataTable from "../components/FrameDataTable";
 import { ICharacterFrameData, ICharacterList } from "../interfaces/frameData";
-import frameDataSlice from "../reducer/frameDataSlice";
+import frameDataSlice, { loadFrameDataInfo } from "../reducer/frameDataSlice";
 import { RootState } from "../store/basicStore";
 import styles from "../styles/index.module.css";
 import { wrapper, createStore as store } from "./../store/basicStore";
@@ -14,16 +14,18 @@ import { GetServerSideProps } from "next";
 
 // TODO: contextについての確認必須
 // TODO: wrapper.getServerSideProps(async ({ req, res, store })のやり方もありますがどっちがいいか確認必須
-// Home.getInitialProps = wrapper.getInitialPageProps(
-//   (store) =>
-//     ({ pathname, req, res }) => {
-//       console.log("2. Page.getInitialProps uses the store to dispatch things");
-//       store.dispatch(frameDataSlice.actions.loadFrameDataInfo(12));
-//     }
-// );
+Home.getInitialProps = wrapper.getInitialPageProps(
+  (store) =>
+    async ({ pathname, req, res }) => {
+      console.log("2. Page.getInitialProps uses the store to dispatch things");
+      // store.dispatch(frameDataSlice.actions.loadFrameDataInfo(12));
+      store.dispatch(loadFrameDataInfo());
+    }
+);
 
-// export const getServerSideProps = wrapper.getServerSideProps((stozzzre) => {
-//   store.dispatch(frameDataSlice.actions.loadFrameDataInfo(12));
+// export const getServerSideProps = wrapper.getServerSideProps(store => ({req, res}) => {
+//   console.log('2. Page.getServerSideProps uses the store to dispatch things');
+//   store.dispatch({type: 'TICK', payload: 'was set in other page'});
 // });
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
