@@ -8,6 +8,7 @@ export const symbolType = {
   Plus: "+",
   Minus: "-",
   Blank: "",
+  Knockdown: "KD",
 };
 
 export interface IFrameData {

@@ -4,19 +4,35 @@ import { NextPage } from "next";
 // interface
 // style
 import styles from "../styles/frameDataRow.module.css";
-import { IFrameData } from "../interfaces/frameData";
+import { IFrameData, symbolType } from "../interfaces/frameData";
 
 interface Props {
   frameData: IFrameData;
 }
 
+const OnHitStatus = {
+  KNOCKDOWN: 9999,
+};
+
 const FrameDataRow: NextPage<Props> = (props) => {
   const { frameData } = props;
   const getSymbol = (frames: number) => {
     if (frames >= 1) {
-      return "+";
+      return symbolType.Plus;
     } else {
-      return "";
+      return symbolType.Blank;
+    }
+  };
+  const getOnHitStatus = (frames: number) => {
+    if (frames === OnHitStatus.KNOCKDOWN) {
+      return symbolType.Knockdown;
+    } else {
+      return (
+        <>
+          {getSymbol(frames)}
+          {frames}
+        </>
+      );
     }
   };
   return (
@@ -29,14 +45,8 @@ const FrameDataRow: NextPage<Props> = (props) => {
         {getSymbol(frameData.block)}
         {frameData.block}
       </td>
-      <td>
-        {getSymbol(frameData.hit)}
-        {frameData.hit}
-      </td>
-      <td>
-        {getSymbol(frameData.counter)}
-        {frameData.counter}
-      </td>
+      <td>{getOnHitStatus(frameData.hit)}</td>
+      <td>{getOnHitStatus(frameData.counter)}</td>
     </tr>
   );
 };
