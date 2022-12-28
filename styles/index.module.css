@@ -46,13 +46,29 @@
 .entryNotComplete {
   text-decoration: line-through;
   pointer-events: none;
+  background-color: #dc8686;
 }
 
 .selectable {
-  text-decoration: underline;
   font-weight: bold;
+}
+
+.selectable:hover {
+  background-color: #c6dc3d;
 }
 
 .wip {
   color: red;
+}
+
+.characterLink {
+  display: inline-block;
+  border: 1px solid;
+  padding: 10px;
+  margin: 10px 10px 0 0;
+  border-radius: 5px;
+}
+
+.characterListItem {
+  display: inline-block;
 }

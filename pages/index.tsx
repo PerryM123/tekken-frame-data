@@ -1,42 +1,43 @@
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FrameDataTable from "../components/FrameDataTable";
-import {
-  ICharacterFrameDataResponse,
-  ICharacterListResponse,
-} from "../interfaces/frameData";
+import { ICharacterList } from "../interfaces/frameData";
+import { loadFrameDataInfo } from "../reducer/frameDataSlice";
+import { RootState } from "../store/basicStore";
 import styles from "../styles/index.module.css";
-import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/heihachi/sampleResponse.json";
 import characterListSampleResponse from "./../sampleData/api/allCharacters/sampleResponse.json";
 
 export default function Home() {
   const handleFrameDataSelector = () => {
     console.log("handleFrameDataSelector");
   };
-  // TODO: change to JSON data soon
-  const frameDataSample: ICharacterFrameDataResponse =
-    characterFrameDataSampleData;
-  const characterListSample: ICharacterListResponse =
-    characterListSampleResponse;
+  const characterListSample: ICharacterList = characterListSampleResponse;
+  const dispatch = useDispatch();
+  const frameDataInfo = useSelector((state: RootState) => state.frameDataInfo);
+  const { name, description, moves } = frameDataInfo;
+
+  useEffect(() => {
+    dispatch(loadFrameDataInfo());
+  }, []);
 
   return (
     <div>
       <nav>
         <h3>character list</h3>
         <ul>
-          {characterListSample.characters.map((item) => {
+          {characterListSample.characters.map((item, index) => {
             return (
-              <li>
-                {!item.isEntryComplete ? (
-                  <a className={styles.entryNotComplete} href="#">
-                    {item.name}
-                  </a>
-                ) : (
-                  <a className={styles.selectable} href="#">
-                    {item.name}
-                  </a>
-                )}
-                {!item.isEntryComplete ? (
-                  <span className={styles.wip}> (WIP)</span>
-                ) : null}
+              <li className={styles.characterListItem} key={index}>
+                <a
+                  className={`${
+                    !item.isEntryComplete
+                      ? styles.entryNotComplete
+                      : styles.selectable
+                  } ${styles.characterLink}`}
+                  href="#"
+                >
+                  {item.name}
+                </a>
               </li>
             );
           })}
@@ -53,7 +54,7 @@ export default function Home() {
           </div>
         </li>
       </ul>
-      <FrameDataTable title="Standing" frameData={frameDataSample.moves} />
+      <FrameDataTable title="Standing" frameData={moves} />
       {/* TODO: 以下の攻撃内容も追加必須 */}
       {/* <FrameDataTable title="Advancing" frameData={frameDataSample.moves} /> */}
       {/* <FrameDataTable title="Dashing" frameData={frameDataSample.moves} /> */}

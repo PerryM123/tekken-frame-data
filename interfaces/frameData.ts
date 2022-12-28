@@ -8,40 +8,37 @@ export const symbolType = {
   Plus: "+",
   Minus: "-",
   Blank: "",
+  Knockdown: "KD",
 };
 
 export interface IFrameData {
   input: string;
   startUp: number;
-  // TODO
-  // hitType: "H" | "M" | "L";
   hitType: string;
-  damage: number;
+  damage: string;
   block: number;
-  // TODO
-  // blockSymbol: "+" | "-" | "";
-  blockSymbol: string;
   hit: number;
-  // TODO
-  // hitSymbol: "+" | "-" | "";
-  hitSymbol: string;
   counter: number;
-  // TODO
-  // counterSymbol: "+" | "-" | "";
-  counterSymbol: string;
 }
 
-export interface ICharacterFrameDataResponse {
+export interface ICharacterFrameData {
   name: string;
   description: string;
   moves: IFrameData[];
 }
 
-export interface ICharacterListResponse {
+export interface ICharacterList {
   characters: ICharacterItem[];
 }
 
 export interface ICharacterItem {
   name: string;
   isEntryComplete: boolean;
+}
+
+export enum HeaderType {
+  START_UP = 0,
+  BLOCK = 1,
+  HIT = 2,
+  COUNTER = 3,
 }

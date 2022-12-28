@@ -1,4 +1,4 @@
-# Tekken Frame Data
+# Tekken Frame Data ver 0.2
 
 ## なぜ作ってるか
 
@@ -8,7 +8,7 @@
 
 Next.js と express.js と mysql の練習のために作成してます。
 
-![alt text](./sampleData/sample.png)
+![alt text](./sampleData/ver0.2.gif)
 
 ## Getting Started
 
@@ -22,5 +22,5 @@ $ yarn dev
 ## Techonogies being used
 
 - フロント技術: NextJs
-- サーバーサイド磁術: express.JS (TODO: Add repo here)
+- サーバーサイド技術: express.JS (TODO: Add repo here)
 - データベース: mysql

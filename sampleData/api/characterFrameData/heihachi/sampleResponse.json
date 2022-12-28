@@ -6,49 +6,91 @@
       "input": "1",
       "startUp": 10,
       "hitType": "H",
-      "damage": 7,
+      "damage": "7",
       "block": 1,
-      "blockSymbol": "-",
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": 8
     },
     {
       "input": "1,1",
-      "startUp": 11,
-      "hitType": "H",
-      "damage": 7,
+      "startUp": 10,
+      "hitType": "H,H",
+      "damage": "7,6",
       "block": 1,
-      "blockSymbol": "+",
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": 8
     },
     {
       "input": "1,2",
-      "startUp": 13,
-      "hitType": "H",
-      "damage": 7,
-      "block": 1,
-      "blockSymbol": "+",
-      "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "startUp": 10,
+      "hitType": "H,H",
+      "damage": "7,8",
+      "block": -1,
+      "hit": 7,
+      "counter": 7
     },
     {
       "input": "1,1,2",
       "startUp": 10,
-      "hitType": "H",
-      "damage": 7,
-      "block": 1,
-      "blockSymbol": "+",
+      "hitType": "H,H,H",
+      "damage": "7,6,12",
+      "block": -17,
+      "hit": 9999,
+      "counter": 9999
+    },
+    {
+      "input": "1,2,4",
+      "startUp": 10,
+      "hitType": "H,H,H",
+      "damage": "7,8,21",
+      "block": -9,
+      "hit": 9999,
+      "counter": 9999
+    },
+    {
+      "input": "1,b2",
+      "startUp": 10,
+      "hitType": "H,H",
+      "damage": "7,21",
+      "block": -2,
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": 8
+    },
+    {
+      "input": "1+2",
+      "startUp": 12,
+      "hitType": "M",
+      "damage": "25",
+      "block": -10,
+      "hit": 9999,
+      "counter": 9999
+    },
+    {
+      "input": "3",
+      "startUp": 14,
+      "hitType": "H",
+      "damage": "14",
+      "block": -10,
+      "hit": 1,
+      "counter": 1
+    },
+    {
+      "input": "3~4",
+      "startUp": 34,
+      "hitType": "M",
+      "damage": "25",
+      "block": -10,
+      "hit": 9999,
+      "counter": 9999
+    },
+    {
+      "input": "f2",
+      "startUp": 15,
+      "hitType": "H",
+      "damage": "13",
+      "block": -9,
+      "hit": 2,
+      "counter": 2
     }
   ]
 }
