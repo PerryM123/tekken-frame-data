@@ -7,12 +7,9 @@
       "startUp": 10,
       "hitType": "H",
       "damage": 7,
-      "block": 1,
-      "blockSymbol": "-",
+      "block": -1,
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": 8
     },
     {
       "input": "1,1",
@@ -20,23 +17,17 @@
       "hitType": "H",
       "damage": 7,
       "block": 1,
-      "blockSymbol": "+",
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": 8
     },
     {
       "input": "1,2",
       "startUp": 13,
       "hitType": "H",
       "damage": 7,
-      "block": 1,
-      "blockSymbol": "+",
+      "block": 0,
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": 8
     },
     {
       "input": "1,1,2",
@@ -44,11 +35,8 @@
       "hitType": "H",
       "damage": 7,
       "block": 1,
-      "blockSymbol": "+",
       "hit": 8,
-      "hitSymbol": "+",
-      "counter": 8,
-      "counterSymbol": "+"
+      "counter": -8
     }
   ]
 }
