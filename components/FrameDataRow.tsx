@@ -4,7 +4,6 @@ import { NextPage } from "next";
 // interface
 // style
 import styles from "../styles/frameDataRow.module.css";
-import FrameDataTableHeader from "./FrameDataTableHeader";
 import { IFrameData } from "../interfaces/frameData";
 
 interface Props {
@@ -13,6 +12,13 @@ interface Props {
 
 const FrameDataRow: NextPage<Props> = (props) => {
   const { frameData } = props;
+  const getSymbol = (frames: number) => {
+    if (frames >= 1) {
+      return "+";
+    } else {
+      return "";
+    }
+  };
   return (
     <tr>
       <td>{frameData.input}</td>
@@ -20,15 +26,15 @@ const FrameDataRow: NextPage<Props> = (props) => {
       <td>{frameData.hitType}</td>
       <td>{frameData.damage}</td>
       <td>
-        {frameData.blockSymbol}
+        {getSymbol(frameData.block)}
         {frameData.block}
       </td>
       <td>
-        {frameData.hitSymbol}
+        {getSymbol(frameData.hit)}
         {frameData.hit}
       </td>
       <td>
-        {frameData.counterSymbol}
+        {getSymbol(frameData.counter)}
         {frameData.counter}
       </td>
     </tr>

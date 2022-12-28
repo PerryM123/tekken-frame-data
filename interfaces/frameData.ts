@@ -13,22 +13,11 @@ export const symbolType = {
 export interface IFrameData {
   input: string;
   startUp: number;
-  // TODO
-  // hitType: "H" | "M" | "L";
   hitType: string;
   damage: number;
   block: number;
-  // TODO
-  // blockSymbol: "+" | "-" | "";
-  blockSymbol: string;
   hit: number;
-  // TODO
-  // hitSymbol: "+" | "-" | "";
-  hitSymbol: string;
   counter: number;
-  // TODO
-  // counterSymbol: "+" | "-" | "";
-  counterSymbol: string;
 }
 
 export interface ICharacterFrameData {
@@ -44,4 +33,11 @@ export interface ICharacterList {
 export interface ICharacterItem {
   name: string;
   isEntryComplete: boolean;
+}
+
+export enum HeaderType {
+  START_UP = 0,
+  BLOCK = 1,
+  HIT = 2,
+  COUNTER = 3,
 }

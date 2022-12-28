@@ -4,30 +4,22 @@ import { NextPage } from "next";
 // interface
 // style
 import styles from "../styles/frameDataTableHeader.module.css";
+import { HeaderType } from "../interfaces/frameData";
+import ClickableHeader from "./ClickableHeader";
 
-interface Props {
-  handleChangeOrder: MouseEventHandler | undefined;
-}
+interface Props {}
 
 const FrameDataTableHeader: NextPage<Props> = (props) => {
-  const { handleChangeOrder } = props;
+  const [wasClicked, setClicked] = useState(false);
   return (
     <tr>
       <th>Input</th>
-      <th onClick={handleChangeOrder} className={styles.changeOrder}>
-        Start up ▼
-      </th>
+      <ClickableHeader type={HeaderType.START_UP} title="Start up" />
       <th>Hit Type</th>
       <th>Damage</th>
-      <th onClick={handleChangeOrder} className={styles.changeOrder}>
-        Block ▼
-      </th>
-      <th onClick={handleChangeOrder} className={styles.changeOrder}>
-        Hit ▼
-      </th>
-      <th onClick={handleChangeOrder} className={styles.changeOrder}>
-        CH ▼
-      </th>
+      <ClickableHeader type={HeaderType.BLOCK} title="Block" />
+      <ClickableHeader type={HeaderType.HIT} title="Hit" />
+      <ClickableHeader type={HeaderType.COUNTER} title="CH" />
     </tr>
   );
 };

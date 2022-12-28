@@ -6,18 +6,12 @@ import { NextPage } from "next";
 import styles from "../styles/frameDataTable.module.css";
 import FrameDataTableHeader from "./FrameDataTableHeader";
 import FrameDataRow from "./FrameDataRow";
-import { IFrameData } from "../interfaces/frameData";
+import { HeaderType, IFrameData } from "../interfaces/frameData";
 
 interface Props {
   title: string;
   frameData: IFrameData[];
 }
-
-const handleChangeOrder = (frameData: IFrameData[]) => {
-  console.log("handleChangeOrder: frameData: ", frameData);
-};
-
-// TODO: Add redux store soon
 
 const FrameDataTable: NextPage<Props> = (props) => {
   const { frameData, title } = props;
@@ -26,9 +20,7 @@ const FrameDataTable: NextPage<Props> = (props) => {
       <h2>{title}</h2>
       <table className={styles.frameDataTable}>
         <tbody>
-          <FrameDataTableHeader
-            handleChangeOrder={() => handleChangeOrder(frameData)}
-          />
+          <FrameDataTableHeader />
           {frameData.map((item, index) => {
             return <FrameDataRow frameData={item} key={index} />;
           })}

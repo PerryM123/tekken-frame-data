@@ -1,43 +1,23 @@
 import React, { useEffect } from "react";
-import { render } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/heihachi/sampleResponse.json";
-
 import FrameDataTable from "../components/FrameDataTable";
-import { ICharacterFrameData, ICharacterList } from "../interfaces/frameData";
-import frameDataSlice, { loadFrameDataInfo } from "../reducer/frameDataSlice";
+import { ICharacterList } from "../interfaces/frameData";
+import { loadFrameDataInfo } from "../reducer/frameDataSlice";
 import { RootState } from "../store/basicStore";
 import styles from "../styles/index.module.css";
-import { wrapper, createStore as store } from "./../store/basicStore";
-
 import characterListSampleResponse from "./../sampleData/api/allCharacters/sampleResponse.json";
-import { GetServerSideProps } from "next";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const frameDataSample: ICharacterFrameData = characterFrameDataSampleData;
-  let frameDataInfo = {
-    name: frameDataSample.name,
-    description: frameDataSample.description,
-    moves: frameDataSample.moves,
-  };
-  return {
-    props: { frameDataInfo },
-  };
-};
-
-type IProps = {
-  frameDataInfo: ICharacterFrameData;
-};
-
-export default function Home(props: IProps) {
-  const { name, description, moves } = props.frameDataInfo;
+export default function Home() {
   const handleFrameDataSelector = () => {
     console.log("handleFrameDataSelector");
   };
   const characterListSample: ICharacterList = characterListSampleResponse;
+  const dispatch = useDispatch();
+  const frameDataInfo = useSelector((state: RootState) => state.frameDataInfo);
+  const { name, description, moves } = frameDataInfo;
 
   useEffect(() => {
-    console.log("use effect now");
+    dispatch(loadFrameDataInfo());
   }, []);
 
   return (
