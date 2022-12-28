@@ -27,19 +27,17 @@ export default function Home() {
         <ul>
           {characterListSample.characters.map((item, index) => {
             return (
-              <li key={index}>
-                {!item.isEntryComplete ? (
-                  <a className={styles.entryNotComplete} href="#">
-                    {item.name}
-                  </a>
-                ) : (
-                  <a className={styles.selectable} href="#">
-                    {item.name}
-                  </a>
-                )}
-                {!item.isEntryComplete ? (
-                  <span className={styles.wip}> (WIP)</span>
-                ) : null}
+              <li className={styles.characterListItem} key={index}>
+                <a
+                  className={`${
+                    !item.isEntryComplete
+                      ? styles.entryNotComplete
+                      : styles.selectable
+                  } ${styles.characterLink}`}
+                  href="#"
+                >
+                  {item.name}
+                </a>
               </li>
             );
           })}
