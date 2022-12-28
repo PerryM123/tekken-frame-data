@@ -17,12 +17,17 @@ interface Props {
   title: string;
 }
 
+const Logo = {
+  ASCENDING: "▲",
+  DESCENDING: "▼",
+};
+
 const ClickableHeader: NextPage<Props> = (props) => {
   const { type, title } = props;
   const [isActive, setActive] = useState(false);
   const [isAscending, setAscending] = useState(false);
   const [isDescending, setDescending] = useState(false);
-  const [iconText, setIconText] = useState("▼");
+  const [iconText, setIconText] = useState(Logo.DESCENDING);
   const dispatch = useDispatch();
 
   const clickTableIcon = () => {
@@ -32,11 +37,11 @@ const ClickableHeader: NextPage<Props> = (props) => {
     } else if (!isAscending) {
       setAscending(true);
       setDescending(false);
-      setIconText("▲");
+      setIconText(Logo.DESCENDING);
     } else if (isAscending && !isDescending) {
       setAscending(false);
       setDescending(true);
-      setIconText("▼");
+      setIconText(Logo.ASCENDING);
     }
   };
 
