@@ -34,6 +34,7 @@ const ClickableHeader: NextPage<Props> = (props) => {
     dispatch(updateFrameDataList({ type, isAscending, isDescending }));
     if (!isActive) {
       setActive(!isActive);
+      setAscending(true);
     } else if (!isAscending) {
       setAscending(true);
       setDescending(false);

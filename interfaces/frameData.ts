@@ -15,7 +15,7 @@ export interface IFrameData {
   input: string;
   startUp: number;
   hitType: string;
-  damage: number;
+  damage: string;
   block: number;
   hit: number;
   counter: number;
