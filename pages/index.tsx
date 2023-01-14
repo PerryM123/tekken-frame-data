@@ -1,28 +1,38 @@
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect } from "react";
+// redux
 import { useDispatch, useSelector } from "react-redux";
-import FrameDataTable from "../components/FrameDataTable";
-import { ICharacterList, ICharacterFrameData } from "../interfaces/frameData";
+import { loadCharacterDataIntoStore } from "../reducer/characterListSlice";
 import { loadFrameDataIntoStore } from "../reducer/frameDataSlice";
 import { RootState } from "../store/basicStore";
+// interfaces
+import { ICharacterList, ICharacterFrameData, ICharacterItem } from "../interfaces/frameData";
+// components
+import FrameDataTable from "../components/FrameDataTable";
+// styles
 import styles from "../styles/index.module.css";
 
 interface Props {
   characterFrameData: ICharacterFrameData;
-  characterList: ICharacterList;
+  characters: ICharacterItem[];
 }
 
 export default function Home(data: Props) {
+  console.log('Home data: ', data);
   const handleFrameDataSelector = () => {
     console.log("handleFrameDataSelector");
   };
   // const characterListSample: ICharacterList = characterListSampleResponse;
   const dispatch = useDispatch();
-  const frameDataInfo = useSelector((state: RootState) => state.frameDataInfo);
+  const frameDataInfo = useSelector((state: RootState) => state.frameData);
+  const characterList = useSelector((state: RootState) => state.characterList);
   const { name, description, moves } = frameDataInfo;
 
   useEffect(() => {
     dispatch(loadFrameDataIntoStore({...data.characterFrameData}));
+    console.log('data.characterList: ', data.characters);
+    console.log('{...data.characterList}: ', {...data.characters});
+    dispatch(loadCharacterDataIntoStore(data.characters));
   }, []);
 
   return (
@@ -30,8 +40,7 @@ export default function Home(data: Props) {
       <nav>
         <h3>character list</h3>
         <ul>
-          {/* TODO: characterListのsliceができたら以下を修正 */}
-          {/* {characterListSample.characters.map((item, index) => {
+          {characterList.characters.map((item, index) => {
             return (
               <li className={styles.characterListItem} key={index}>
                 <a
@@ -46,7 +55,7 @@ export default function Home(data: Props) {
                 </a>
               </li>
             );
-          })} */}
+          })}
         </ul>
       </nav>
       <h1>Heihachi's Frame Data</h1>
@@ -82,7 +91,7 @@ export async function getServerSideProps() {
       description: frameDataResponse.data.description,
       moves: frameDataResponse.data.moves,
     },
-    characterList: characterDataResponse.data.characters,
+    characters: characterDataResponse.data.characters,
   }
 	return {props: {...data}};
 }

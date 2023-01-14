@@ -60,7 +60,6 @@ const frameDataSlice = createSlice({
   initialState,
   reducers: {
     loadFrameDataIntoStore(state, action: PayloadAction<ICharacterFrameData>) {
-      // TODO: APIができたらこの辺API送信する予定
       state.name = action.payload.name;
       state.description = action.payload.description;
       state.moves = action.payload.moves;
@@ -79,7 +78,7 @@ const frameDataSlice = createSlice({
   },
 });
 
-export default frameDataSlice;
+export default frameDataSlice.reducer;
 
 export const {updateFrameDataList, loadFrameDataIntoStore } =
   frameDataSlice.actions;
