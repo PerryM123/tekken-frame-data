@@ -1,23 +1,28 @@
+import axios, { AxiosResponse } from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FrameDataTable from "../components/FrameDataTable";
-import { ICharacterList } from "../interfaces/frameData";
-import { loadFrameDataInfo } from "../reducer/frameDataSlice";
+import { ICharacterList, ICharacterFrameData } from "../interfaces/frameData";
+import { loadFrameDataIntoStore } from "../reducer/frameDataSlice";
 import { RootState } from "../store/basicStore";
 import styles from "../styles/index.module.css";
-import characterListSampleResponse from "./../sampleData/api/allCharacters/sampleResponse.json";
 
-export default function Home() {
+interface Props {
+  characterFrameData: ICharacterFrameData;
+  characterList: ICharacterList;
+}
+
+export default function Home(data: Props) {
   const handleFrameDataSelector = () => {
     console.log("handleFrameDataSelector");
   };
-  const characterListSample: ICharacterList = characterListSampleResponse;
+  // const characterListSample: ICharacterList = characterListSampleResponse;
   const dispatch = useDispatch();
   const frameDataInfo = useSelector((state: RootState) => state.frameDataInfo);
   const { name, description, moves } = frameDataInfo;
 
   useEffect(() => {
-    dispatch(loadFrameDataInfo());
+    dispatch(loadFrameDataIntoStore({...data.characterFrameData}));
   }, []);
 
   return (
@@ -25,7 +30,8 @@ export default function Home() {
       <nav>
         <h3>character list</h3>
         <ul>
-          {characterListSample.characters.map((item, index) => {
+          {/* TODO: characterListのsliceができたら以下を修正 */}
+          {/* {characterListSample.characters.map((item, index) => {
             return (
               <li className={styles.characterListItem} key={index}>
                 <a
@@ -40,7 +46,7 @@ export default function Home() {
                 </a>
               </li>
             );
-          })}
+          })} */}
         </ul>
       </nav>
       <h1>Heihachi's Frame Data</h1>
@@ -65,4 +71,18 @@ export default function Home() {
       {/* <FrameDataTable title="Jumping" frameData={frameDataSample.moves} /> */}
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const frameDataResponse: AxiosResponse<any> = await axios.get("http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json");
+  const characterDataResponse: AxiosResponse = await axios.get("http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json");
+  const data: Props = {
+    characterFrameData: {
+      name: frameDataResponse.data.name,
+      description: frameDataResponse.data.description,
+      moves: frameDataResponse.data.moves,
+    },
+    characterList: characterDataResponse.data.characters,
+  }
+	return {props: {...data}};
 }

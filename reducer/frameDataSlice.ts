@@ -4,7 +4,6 @@ import {
   ICharacterFrameData,
   IFrameData,
 } from "../interfaces/frameData";
-import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/heihachi/sampleResponse.json";
 
 export type User = {
   id: string | null;
@@ -60,13 +59,11 @@ const frameDataSlice = createSlice({
   name: "frameDataInfo",
   initialState,
   reducers: {
-    loadFrameDataInfo(state) {
-      console.log("function: loadFrameDataInfo");
+    loadFrameDataIntoStore(state, action: PayloadAction<ICharacterFrameData>) {
       // TODO: APIができたらこの辺API送信する予定
-      const frameDataSample: ICharacterFrameData = characterFrameDataSampleData;
-      state.name = frameDataSample.name;
-      state.description = frameDataSample.description;
-      state.moves = frameDataSample.moves;
+      state.name = action.payload.name;
+      state.description = action.payload.description;
+      state.moves = action.payload.moves;
     },
     updateFrameDataList(
       state,
@@ -84,5 +81,5 @@ const frameDataSlice = createSlice({
 
 export default frameDataSlice;
 
-export const { loadFrameDataInfo, updateFrameDataList } =
+export const {updateFrameDataList, loadFrameDataIntoStore } =
   frameDataSlice.actions;
