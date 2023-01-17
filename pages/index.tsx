@@ -6,7 +6,11 @@ import { loadCharacterDataIntoStore } from "../reducer/characterListSlice";
 import { loadFrameDataIntoStore } from "../reducer/frameDataSlice";
 import { RootState } from "../store/basicStore";
 // interfaces
-import { ICharacterList, ICharacterFrameData, ICharacterItem } from "../interfaces/frameData";
+import {
+  ICharacterList,
+  ICharacterFrameData,
+  ICharacterItem,
+} from "../interfaces/frameData";
 // components
 import FrameDataTable from "../components/FrameDataTable";
 // styles
@@ -18,20 +22,16 @@ interface Props {
 }
 
 export default function Home(data: Props) {
-  console.log('Home data: ', data);
   const handleFrameDataSelector = () => {
     console.log("handleFrameDataSelector");
   };
-  // const characterListSample: ICharacterList = characterListSampleResponse;
   const dispatch = useDispatch();
   const frameDataInfo = useSelector((state: RootState) => state.frameData);
   const characterList = useSelector((state: RootState) => state.characterList);
   const { name, description, moves } = frameDataInfo;
 
   useEffect(() => {
-    dispatch(loadFrameDataIntoStore({...data.characterFrameData}));
-    console.log('data.characterList: ', data.characters);
-    console.log('{...data.characterList}: ', {...data.characters});
+    dispatch(loadFrameDataIntoStore({ ...data.characterFrameData }));
     dispatch(loadCharacterDataIntoStore(data.characters));
   }, []);
 
@@ -83,8 +83,12 @@ export default function Home(data: Props) {
 }
 
 export async function getServerSideProps() {
-  const frameDataResponse: AxiosResponse<any> = await axios.get("http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json");
-  const characterDataResponse: AxiosResponse = await axios.get("http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json");
+  const frameDataResponse: AxiosResponse<any> = await axios.get(
+    "http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json"
+  );
+  const characterDataResponse: AxiosResponse = await axios.get(
+    "http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json"
+  );
   const data: Props = {
     characterFrameData: {
       name: frameDataResponse.data.name,
@@ -92,6 +96,6 @@ export async function getServerSideProps() {
       moves: frameDataResponse.data.moves,
     },
     characters: characterDataResponse.data.characters,
-  }
-	return {props: {...data}};
+  };
+  return { props: { ...data } };
 }
