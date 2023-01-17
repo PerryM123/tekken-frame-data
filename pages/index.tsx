@@ -83,6 +83,7 @@ export default function Home(data: Props) {
 }
 
 export async function getServerSideProps() {
+  // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
   const frameDataResponse: AxiosResponse<any> = await axios.get(
     "http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json"
   );
