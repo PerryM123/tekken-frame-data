@@ -1,11 +1,11 @@
 // libraries
-import { useState, useEffect, MouseEventHandler } from "react";
-import { NextPage } from "next";
+import { useState, useEffect, MouseEventHandler } from 'react';
+import { NextPage } from 'next';
 // interface
 // style
-import styles from "../styles/frameDataTableHeader.module.css";
-import { HeaderType } from "../interfaces/frameData";
-import ClickableHeader from "./ClickableHeader";
+import styles from '../styles/frameDataTableHeader.module.css';
+import { HeaderType } from '../interfaces/frameData';
+import ClickableHeader from './ClickableHeader';
 
 interface Props {}
 

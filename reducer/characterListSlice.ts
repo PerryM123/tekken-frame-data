@@ -1,21 +1,20 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICharacterItem, ICharacterList } from "../interfaces/frameData";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICharacterItem, ICharacterList } from '../interfaces/frameData';
 
 export const initialState: ICharacterList = {
-  characters: []
+  characters: [],
 };
 
 const characterListSlice = createSlice({
-  name: "characterList",
+  name: 'characterList',
   initialState,
   reducers: {
     loadCharacterDataIntoStore(state, action: PayloadAction<ICharacterItem[]>) {
       state.characters = action.payload;
-    }
+    },
   },
 });
 
 export default characterListSlice.reducer;
 
-export const { loadCharacterDataIntoStore } =
-characterListSlice.actions;
+export const { loadCharacterDataIntoStore } = characterListSlice.actions;

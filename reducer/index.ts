@@ -1,10 +1,10 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import characterListSlice from './characterListSlice';
 import frameDataSlice from './frameDataSlice';
 
 const reducer = combineReducers({
   characterList: characterListSlice,
-  frameData: frameDataSlice
+  frameData: frameDataSlice,
 });
 
 export default reducer;
