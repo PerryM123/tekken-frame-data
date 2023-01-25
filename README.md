@@ -36,6 +36,9 @@ vscodeを使ってる方の場合、以下の設定をsettings.jsonに保存し�
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
 ```
