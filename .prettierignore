@@ -5,3 +5,5 @@
 next.config.js
 package-lock.json
 package.json
+.next/
+next-env.d.ts
