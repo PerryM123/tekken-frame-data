@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   HeaderType,
   ICharacterFrameData,
   IFrameData,
-} from "../interfaces/frameData";
+} from '../interfaces/frameData';
 
 export type User = {
   id: string | null;
@@ -12,14 +12,14 @@ export type User = {
 };
 
 export type FrameDataState = {
-  name: "";
-  description: "";
+  name: '';
+  description: '';
   moves: [];
 };
 
 export const initialState: ICharacterFrameData = {
-  name: "",
-  description: "",
+  name: '',
+  description: '',
   moves: [],
 };
 
@@ -56,7 +56,7 @@ const orderColumn = (
 };
 
 const frameDataSlice = createSlice({
-  name: "frameDataInfo",
+  name: 'frameDataInfo',
   initialState,
   reducers: {
     loadFrameDataIntoStore(state, action: PayloadAction<ICharacterFrameData>) {
@@ -80,5 +80,5 @@ const frameDataSlice = createSlice({
 
 export default frameDataSlice.reducer;
 
-export const {updateFrameDataList, loadFrameDataIntoStore } =
+export const { updateFrameDataList, loadFrameDataIntoStore } =
   frameDataSlice.actions;

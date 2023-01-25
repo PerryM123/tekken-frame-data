@@ -1,10 +1,10 @@
 // libraries
-import { useState, useEffect } from "react";
-import { NextPage } from "next";
+import { useState, useEffect } from 'react';
+import { NextPage } from 'next';
 // interface
 // style
-import styles from "../styles/frameDataRow.module.css";
-import { IFrameData, symbolType } from "../interfaces/frameData";
+import styles from '../styles/frameDataRow.module.css';
+import { IFrameData, symbolType } from '../interfaces/frameData';
 
 interface Props {
   frameData: IFrameData;

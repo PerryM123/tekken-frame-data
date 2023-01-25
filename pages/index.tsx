@@ -1,20 +1,20 @@
-import axios, { AxiosResponse } from "axios";
-import React, { useEffect } from "react";
+import axios, { AxiosResponse } from 'axios';
+import React, { useEffect } from 'react';
 // redux
-import { useDispatch, useSelector } from "react-redux";
-import { loadCharacterDataIntoStore } from "../reducer/characterListSlice";
-import { loadFrameDataIntoStore } from "../reducer/frameDataSlice";
-import { RootState } from "../store/basicStore";
+import { useDispatch, useSelector } from 'react-redux';
+import { loadCharacterDataIntoStore } from '../reducer/characterListSlice';
+import { loadFrameDataIntoStore } from '../reducer/frameDataSlice';
+import { RootState } from '../store/basicStore';
 // interfaces
 import {
   ICharacterList,
   ICharacterFrameData,
   ICharacterItem,
-} from "../interfaces/frameData";
+} from '../interfaces/frameData';
 // components
-import FrameDataTable from "../components/FrameDataTable";
+import FrameDataTable from '../components/FrameDataTable';
 // styles
-import styles from "../styles/index.module.css";
+import styles from '../styles/index.module.css';
 
 interface Props {
   characterFrameData: ICharacterFrameData;
@@ -23,7 +23,7 @@ interface Props {
 
 export default function Home(data: Props) {
   const handleFrameDataSelector = () => {
-    console.log("handleFrameDataSelector");
+    console.log('handleFrameDataSelector');
   };
   const dispatch = useDispatch();
   const frameDataInfo = useSelector((state: RootState) => state.frameData);
@@ -85,10 +85,10 @@ export default function Home(data: Props) {
 export async function getServerSideProps() {
   // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
   const frameDataResponse: AxiosResponse<any> = await axios.get(
-    "http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json"
+    'http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json'
   );
   const characterDataResponse: AxiosResponse = await axios.get(
-    "http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json"
+    'http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json'
   );
   const data: Props = {
     characterFrameData: {

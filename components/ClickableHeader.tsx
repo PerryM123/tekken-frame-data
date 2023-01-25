@@ -1,13 +1,13 @@
 // libraries
-import { useState, useEffect, MouseEventHandler } from "react";
-import { NextPage } from "next";
-import { useDispatch } from "react-redux";
+import { useState, useEffect, MouseEventHandler } from 'react';
+import { NextPage } from 'next';
+import { useDispatch } from 'react-redux';
 // interface
-import { HeaderType } from "../interfaces/frameData";
+import { HeaderType } from '../interfaces/frameData';
 // reducer
-import { updateFrameDataList } from "../reducer/frameDataSlice";
+import { updateFrameDataList } from '../reducer/frameDataSlice';
 // style
-import styles from "../styles/frameDataTableHeader.module.css";
+import styles from '../styles/frameDataTableHeader.module.css';
 interface Props {
   type:
     | HeaderType.START_UP
@@ -18,8 +18,8 @@ interface Props {
 }
 
 const Logo = {
-  ASCENDING: "▲",
-  DESCENDING: "▼",
+  ASCENDING: '▲',
+  DESCENDING: '▼',
 };
 
 const ClickableHeader: NextPage<Props> = (props) => {
@@ -59,9 +59,9 @@ const ClickableHeader: NextPage<Props> = (props) => {
 
   return (
     <th onClick={clickTableIcon} className={styles.changeOrder}>
-      {title}{" "}
+      {title}{' '}
       <span
-        className={`${styles.tableIcon} ${isActive && styles["js-active"]}`}
+        className={`${styles.tableIcon} ${isActive && styles['js-active']}`}
       >
         {iconText}
       </span>

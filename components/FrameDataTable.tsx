@@ -1,12 +1,12 @@
 // libraries
-import { useState, useEffect } from "react";
-import { NextPage } from "next";
+import { useState, useEffect } from 'react';
+import { NextPage } from 'next';
 // interface
 // style
-import styles from "../styles/frameDataTable.module.css";
-import FrameDataTableHeader from "./FrameDataTableHeader";
-import FrameDataRow from "./FrameDataRow";
-import { HeaderType, IFrameData } from "../interfaces/frameData";
+import styles from '../styles/frameDataTable.module.css';
+import FrameDataTableHeader from './FrameDataTableHeader';
+import FrameDataRow from './FrameDataRow';
+import { HeaderType, IFrameData } from '../interfaces/frameData';
 
 interface Props {
   title: string;
