@@ -24,3 +24,18 @@ $ yarn dev
 - フロント技術: NextJs
 - サーバーサイド技術: express.JS (TODO: Add repo here)
 - データベース: mysql
+
+## prettier設定について
+
+vscodeを使ってる方の場合、以下の設定をsettings.jsonに保存していただければと思います。
+
+```
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
