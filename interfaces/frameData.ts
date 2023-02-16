@@ -1,14 +1,14 @@
 export const HitType = {
-  High: "H",
-  Mid: "M",
-  Low: "L",
+  High: 'H',
+  Mid: 'M',
+  Low: 'L',
 };
 
 export const symbolType = {
-  Plus: "+",
-  Minus: "-",
-  Blank: "",
-  Knockdown: "KD",
+  Plus: '+',
+  Minus: '-',
+  Blank: '',
+  Knockdown: 'KD',
 };
 
 export interface IFrameData {

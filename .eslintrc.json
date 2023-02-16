@@ -1,6 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "root": true,
   "rules": {
-    "react/no-unescaped-entities": 0
+    "react/no-unescaped-entities": 0,
+    "@typescript-eslint/no-empty-interface": 0
   }
 }
