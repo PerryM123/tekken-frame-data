@@ -1,4 +1,4 @@
-# Tekken Frame Data ver 0.2
+# Tekken Frame Data ver 0.3
 
 ## なぜ作ってるか
 
@@ -8,7 +8,7 @@
 
 Next.js と express.js と mysql の練習のために作成してます。
 
-![alt text](./sampleData/ver0.2.gif)
+![alt text](./sampleData/ver0.3.gif)
 
 ## Getting Started
 
