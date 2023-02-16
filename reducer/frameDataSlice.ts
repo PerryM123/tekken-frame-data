@@ -1,10 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   HeaderType,
   ICharacterFrameData,
   IFrameData,
-} from "../interfaces/frameData";
-import characterFrameDataSampleData from "./../sampleData/api/characterFrameData/heihachi/sampleResponse.json";
+} from '../interfaces/frameData';
 
 export type User = {
   id: string | null;
@@ -13,14 +12,14 @@ export type User = {
 };
 
 export type FrameDataState = {
-  name: "";
-  description: "";
+  name: '';
+  description: '';
   moves: [];
 };
 
 export const initialState: ICharacterFrameData = {
-  name: "",
-  description: "",
+  name: '',
+  description: '',
   moves: [],
 };
 
@@ -57,23 +56,19 @@ const orderColumn = (
 };
 
 const frameDataSlice = createSlice({
-  name: "frameDataInfo",
+  name: 'frameDataInfo',
   initialState,
   reducers: {
-    loadFrameDataInfo(state) {
-      console.log("function: loadFrameDataInfo");
-      // TODO: APIができたらこの辺API送信する予定
-      const frameDataSample: ICharacterFrameData = characterFrameDataSampleData;
-      state.name = frameDataSample.name;
-      state.description = frameDataSample.description;
-      state.moves = frameDataSample.moves;
+    loadFrameDataIntoStore(state, action: PayloadAction<ICharacterFrameData>) {
+      state.name = action.payload.name;
+      state.description = action.payload.description;
+      state.moves = action.payload.moves;
     },
     updateFrameDataList(
       state,
       action: PayloadAction<{
         type: HeaderType;
         isAscending: boolean;
-        isDescending: boolean;
       }>
     ) {
       const { type, isAscending } = action.payload;
@@ -82,7 +77,7 @@ const frameDataSlice = createSlice({
   },
 });
 
-export default frameDataSlice;
+export default frameDataSlice.reducer;
 
-export const { loadFrameDataInfo, updateFrameDataList } =
+export const { updateFrameDataList, loadFrameDataIntoStore } =
   frameDataSlice.actions;

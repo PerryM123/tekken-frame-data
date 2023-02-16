@@ -1,0 +1,8 @@
+# 無視したいファイル形式
+*.md
+.prettierrc
+next.config.js
+package-lock.json
+package.json
+.next/
+next-env.d.ts

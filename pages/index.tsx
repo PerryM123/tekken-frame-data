@@ -1,23 +1,38 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import FrameDataTable from "../components/FrameDataTable";
-import { ICharacterList } from "../interfaces/frameData";
-import { loadFrameDataInfo } from "../reducer/frameDataSlice";
-import { RootState } from "../store/basicStore";
-import styles from "../styles/index.module.css";
-import characterListSampleResponse from "./../sampleData/api/allCharacters/sampleResponse.json";
+import axios, { AxiosResponse } from 'axios';
+import React, { useEffect } from 'react';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { loadCharacterDataIntoStore } from '../reducer/characterListSlice';
+import { loadFrameDataIntoStore } from '../reducer/frameDataSlice';
+import { RootState } from '../store/basicStore';
+// interfaces
+import {
+  ICharacterList,
+  ICharacterFrameData,
+  ICharacterItem,
+} from '../interfaces/frameData';
+// components
+import FrameDataTable from '../components/FrameDataTable';
+// styles
+import styles from '../styles/index.module.css';
 
-export default function Home() {
+interface Props {
+  characterFrameData: ICharacterFrameData;
+  characters: ICharacterItem[];
+}
+
+export default function Home(data: Props) {
   const handleFrameDataSelector = () => {
-    console.log("handleFrameDataSelector");
+    console.log('handleFrameDataSelector');
   };
-  const characterListSample: ICharacterList = characterListSampleResponse;
   const dispatch = useDispatch();
-  const frameDataInfo = useSelector((state: RootState) => state.frameDataInfo);
+  const frameDataInfo = useSelector((state: RootState) => state.frameData);
+  const characterList = useSelector((state: RootState) => state.characterList);
   const { name, description, moves } = frameDataInfo;
 
   useEffect(() => {
-    dispatch(loadFrameDataInfo());
+    dispatch(loadFrameDataIntoStore({ ...data.characterFrameData }));
+    dispatch(loadCharacterDataIntoStore(data.characters));
   }, []);
 
   return (
@@ -25,7 +40,7 @@ export default function Home() {
       <nav>
         <h3>character list</h3>
         <ul>
-          {characterListSample.characters.map((item, index) => {
+          {characterList.characters.map((item, index) => {
             return (
               <li className={styles.characterListItem} key={index}>
                 <a
@@ -65,4 +80,23 @@ export default function Home() {
       {/* <FrameDataTable title="Jumping" frameData={frameDataSample.moves} /> */}
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
+  const frameDataResponse: AxiosResponse<any> = await axios.get(
+    'http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json'
+  );
+  const characterDataResponse: AxiosResponse = await axios.get(
+    'http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json'
+  );
+  const data: Props = {
+    characterFrameData: {
+      name: frameDataResponse.data.name,
+      description: frameDataResponse.data.description,
+      moves: frameDataResponse.data.moves,
+    },
+    characters: characterDataResponse.data.characters,
+  };
+  return { props: { ...data } };
 }
