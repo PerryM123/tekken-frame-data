@@ -69,7 +69,6 @@ const frameDataSlice = createSlice({
       action: PayloadAction<{
         type: HeaderType;
         isAscending: boolean;
-        isDescending: boolean;
       }>
     ) {
       const { type, isAscending } = action.payload;

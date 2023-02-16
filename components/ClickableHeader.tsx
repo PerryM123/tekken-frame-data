@@ -15,6 +15,15 @@ interface Props {
     | HeaderType.HIT
     | HeaderType.COUNTER;
   title: string;
+  handleTableHeaderStatus: (
+    type:
+      | HeaderType.START_UP
+      | HeaderType.BLOCK
+      | HeaderType.HIT
+      | HeaderType.COUNTER
+  ) => void;
+  isActive: boolean;
+  isAscending: boolean;
 }
 
 const Logo = {
@@ -23,33 +32,12 @@ const Logo = {
 };
 
 const ClickableHeader: NextPage<Props> = (props) => {
-  const { type, title } = props;
-  const [isActive, setActive] = useState(false);
-  const [isAscending, setAscending] = useState(false);
-  const [isDescending, setDescending] = useState(false);
-  const [iconText, setIconText] = useState(Logo.DESCENDING);
+  const { type, title, handleTableHeaderStatus, isActive, isAscending } = props;
   const dispatch = useDispatch();
 
   const clickTableIcon = () => {
-    dispatch(updateFrameDataList({ type, isAscending, isDescending }));
-    if (!isActive) {
-      setActive(!isActive);
-      setAscending(true);
-    } else if (!isAscending) {
-      setAscending(true);
-      setDescending(false);
-      setIconText(Logo.DESCENDING);
-    } else if (isAscending && !isDescending) {
-      setAscending(false);
-      setDescending(true);
-      setIconText(Logo.ASCENDING);
-    }
-  };
-
-  const reset = () => {
-    setActive(false);
-    setAscending(false);
-    setDescending(false);
+    dispatch(updateFrameDataList({ type, isAscending }));
+    handleTableHeaderStatus(type);
   };
 
   const tableIconClassName = [styles.tableIcon];
@@ -63,7 +51,7 @@ const ClickableHeader: NextPage<Props> = (props) => {
       <span
         className={`${styles.tableIcon} ${isActive && styles['js-active']}`}
       >
-        {iconText}
+        {isAscending ? Logo.DESCENDING : Logo.ASCENDING}
       </span>
     </th>
   );
