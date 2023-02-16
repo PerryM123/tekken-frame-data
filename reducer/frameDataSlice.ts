@@ -41,7 +41,6 @@ const orderColumn = (
       }
     });
   } else {
-    console.log('orderColumn: !isAscending');
     moves.sort(function (a: IFrameData, b: IFrameData) {
       if (type === HeaderType.START_UP) {
         return b.startUp - a.startUp;
