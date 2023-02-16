@@ -9,137 +9,123 @@ import ClickableHeader from './ClickableHeader';
 
 interface Props {}
 
-// TODO: 適切な変数名に変更
-type HeaderItem = {
+type HeaderState = {
   isActive: boolean;
   isAscending: boolean;
 };
 
-// TODO: 適切な変数名に変更
-const HeaderShurui = {
-  startup: 0,
-  block: 1,
-  hit: 2,
-  counterHit: 3,
-} as const;
+const FrameDataTableHeader: NextPage<Props> = () => {
+  const [startupState, setStartup] = useState<HeaderState>({
+    isActive: false,
+    isAscending: false,
+  });
+  const [blockState, setBlock] = useState<HeaderState>({
+    isActive: false,
+    isAscending: false,
+  });
+  const [hitState, setHit] = useState<HeaderState>({
+    isActive: false,
+    isAscending: false,
+  });
+  const [counterHitState, setCounterHit] = useState<HeaderState>({
+    isActive: false,
+    isAscending: false,
+  });
 
-const FrameDataTableHeader: NextPage<Props> = (props) => {
-  // TODO: 重複コードを削除
-  const [startup, setStartup] = useState<HeaderItem>({
-    isActive: false,
-    isAscending: false,
-  });
-  const [block, setBlock] = useState<HeaderItem>({
-    isActive: false,
-    isAscending: false,
-  });
-  const [hit, setHit] = useState<HeaderItem>({
-    isActive: false,
-    isAscending: false,
-  });
-  const [counterHit, setCounterHit] = useState<HeaderItem>({
-    isActive: false,
-    isAscending: false,
-  });
+  type IHeaderTab = {
+    isActive: boolean;
+    isAscending: boolean;
+  };
 
   const setBackToDefault = () => {
-    // TODO: 重複コードを削除
-    setStartup({
+    const defaultState: IHeaderTab = {
       isActive: false,
       isAscending: false,
+    };
+    setStartup({
+      ...defaultState,
     });
     setBlock({
-      isActive: false,
-      isAscending: false,
+      ...defaultState,
     });
     setHit({
-      isActive: false,
-      isAscending: false,
+      ...defaultState,
     });
     setCounterHit({
-      isActive: false,
-      isAscending: false,
+      ...defaultState,
     });
   };
 
-  // TODO: add type and delete any
-  // TODO: 重複コードを削除
-  const updateHeader = (type: any) => {
-    if (type === HeaderShurui.startup) {
-      if (!startup.isActive) {
-        setBackToDefault();
+  const updateHeaderState = (
+    type:
+      | HeaderType.START_UP
+      | HeaderType.BLOCK
+      | HeaderType.HIT
+      | HeaderType.COUNTER,
+    headerState: HeaderState
+  ) => {
+    let headerTabState: IHeaderTab = {
+      isActive: true,
+      // 昇順
+      isAscending: false,
+    };
+    if (!headerState.isActive) {
+      setBackToDefault();
+      headerTabState = {
+        isActive: true,
+        isAscending: true,
+      };
+    } else if (!headerState.isAscending) {
+      headerTabState = {
+        isActive: true,
+        // 降順
+        isAscending: true,
+      };
+    }
+    switch (type) {
+      case HeaderType.START_UP:
         setStartup({
-          isActive: true,
-          isAscending: true,
+          ...headerTabState,
         });
-      } else if (!startup.isAscending) {
-        setStartup({
-          isActive: true,
-          isAscending: true,
-        });
-      } else if (startup.isAscending) {
-        setStartup({
-          isActive: true,
-          isAscending: false,
-        });
-      }
-    } else if (type === HeaderShurui.block) {
-      if (!block.isActive) {
-        setBackToDefault();
+        break;
+      case HeaderType.BLOCK:
         setBlock({
-          isActive: true,
-          isAscending: true,
+          ...headerTabState,
         });
-      } else if (!block.isAscending) {
-        setBlock({
-          isActive: true,
-          isAscending: true,
-        });
-      } else if (block.isAscending) {
-        setBlock({
-          isActive: true,
-          isAscending: false,
-        });
-      }
-    } else if (type === HeaderShurui.hit) {
-      if (!hit.isActive) {
-        setBackToDefault();
+        break;
+      case HeaderType.HIT:
         setHit({
-          isActive: true,
-          isAscending: true,
+          ...headerTabState,
         });
-      } else if (!hit.isAscending) {
-        setHit({
-          isActive: true,
-          isAscending: true,
-        });
-      } else if (hit.isAscending) {
-        setHit({
-          isActive: true,
-          isAscending: false,
-        });
-      }
-    } else if (type === HeaderShurui.counterHit) {
-      if (!counterHit.isActive) {
-        setBackToDefault();
+        break;
+      case HeaderType.COUNTER:
         setCounterHit({
-          isActive: true,
-          isAscending: true,
+          ...headerTabState,
         });
-      } else if (!counterHit.isAscending) {
-        setCounterHit({
-          isActive: true,
-          isAscending: true,
-        });
-      } else if (counterHit.isAscending) {
-        setCounterHit({
-          isActive: true,
-          isAscending: false,
-        });
-      }
-    } else {
-      console.log('else');
-      // TODO
+        break;
+    }
+  };
+
+  const handleTableHeaderStatus = (
+    type:
+      | HeaderType.START_UP
+      | HeaderType.BLOCK
+      | HeaderType.HIT
+      | HeaderType.COUNTER
+  ) => {
+    switch (type) {
+      case HeaderType.START_UP:
+        updateHeaderState(HeaderType.START_UP, startupState);
+        break;
+      case HeaderType.BLOCK:
+        updateHeaderState(HeaderType.BLOCK, blockState);
+        break;
+      case HeaderType.HIT:
+        updateHeaderState(HeaderType.HIT, hitState);
+        break;
+      case HeaderType.COUNTER:
+        updateHeaderState(HeaderType.COUNTER, counterHitState);
+        break;
     }
   };
 
@@ -147,35 +133,34 @@ const FrameDataTableHeader: NextPage<Props> = (props) => {
     <tr>
       <th>Input</th>
       <ClickableHeader
-        updateHeader={updateHeader}
+        handleTableHeaderStatus={handleTableHeaderStatus}
         type={HeaderType.START_UP}
         title="Start up"
-        isActive={startup.isActive}
-        isAscending={startup.isAscending}
+        isActive={startupState.isActive}
+        isAscending={startupState.isAscending}
       />
       <th>Hit Type</th>
       <th>Damage</th>
-      {/* TODO: 重複コードを削除 */}
       <ClickableHeader
-        updateHeader={updateHeader}
+        handleTableHeaderStatus={handleTableHeaderStatus}
         type={HeaderType.BLOCK}
         title="Block"
-        isActive={block.isActive}
-        isAscending={block.isAscending}
+        isActive={blockState.isActive}
+        isAscending={blockState.isAscending}
       />
       <ClickableHeader
-        updateHeader={updateHeader}
+        handleTableHeaderStatus={handleTableHeaderStatus}
         type={HeaderType.HIT}
         title="Hit"
-        isActive={hit.isActive}
-        isAscending={hit.isAscending}
+        isActive={hitState.isActive}
+        isAscending={hitState.isAscending}
       />
       <ClickableHeader
-        updateHeader={updateHeader}
+        handleTableHeaderStatus={handleTableHeaderStatus}
         type={HeaderType.COUNTER}
         title="CH"
-        isActive={counterHit.isActive}
-        isAscending={counterHit.isAscending}
+        isActive={counterHitState.isActive}
+        isAscending={counterHitState.isAscending}
       />
     </tr>
   );

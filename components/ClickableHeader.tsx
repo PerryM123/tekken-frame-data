@@ -15,8 +15,13 @@ interface Props {
     | HeaderType.HIT
     | HeaderType.COUNTER;
   title: string;
-  // TODO: 変数型をつける
-  updateHeader: (type: any) => void;
+  handleTableHeaderStatus: (
+    type:
+      | HeaderType.START_UP
+      | HeaderType.BLOCK
+      | HeaderType.HIT
+      | HeaderType.COUNTER
+  ) => void;
   isActive: boolean;
   isAscending: boolean;
 }
@@ -27,12 +32,12 @@ const Logo = {
 };
 
 const ClickableHeader: NextPage<Props> = (props) => {
-  const { type, title, updateHeader, isActive, isAscending } = props;
+  const { type, title, handleTableHeaderStatus, isActive, isAscending } = props;
   const dispatch = useDispatch();
 
   const clickTableIcon = () => {
     dispatch(updateFrameDataList({ type, isAscending }));
-    updateHeader(type);
+    handleTableHeaderStatus(type);
   };
 
   const tableIconClassName = [styles.tableIcon];
