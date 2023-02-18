@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 import {
   HeaderType,
   ICharacterFrameData,
@@ -63,6 +64,18 @@ const frameDataSlice = createSlice({
       state.name = action.payload.name;
       state.description = action.payload.description;
       state.moves = action.payload.moves;
+      console.log(
+        'function: loadCharacterDataIntoStore: state.name: ',
+        state.name
+      );
+      console.log(
+        'function: loadCharacterDataIntoStore: state.description: ',
+        state.description
+      );
+      console.log(
+        'function: loadCharacterDataIntoStore: state.moves: ',
+        state.moves
+      );
     },
     updateFrameDataList(
       state,
@@ -73,6 +86,15 @@ const frameDataSlice = createSlice({
     ) {
       const { type, isAscending } = action.payload;
       orderColumn(type, isAscending, state.moves);
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      console.log('HYDRATE: ', state, action.payload);
+      return {
+        ...state,
+        ...action.payload.characters,
+      };
     },
   },
 });

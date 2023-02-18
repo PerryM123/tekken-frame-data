@@ -4,7 +4,8 @@ import frameDataSlice, {
   initialState as userState,
 } from '../reducer/frameDataSlice';
 import reducer from './../reducer';
-import { createWrapper } from 'next-redux-wrapper';
+import { createWrapper, Context, HYDRATE } from 'next-redux-wrapper';
+
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 // Logger with default options
 import logger from 'redux-logger';
@@ -22,4 +23,6 @@ export const createStore = configureStore({
 });
 
 const makeStore = () => createStore;
-export const wrapper = createWrapper(makeStore);
+export const wrapper = createWrapper<Store<RootState>>(makeStore, {
+  debug: true,
+});
