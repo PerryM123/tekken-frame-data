@@ -2,7 +2,7 @@ name: Publish to GitHub Pages
 
 on:
   push:
-    branches: ["gh-pages"]
+    branches: ['gh-pages-testing']
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.DEPLOY_PROJECT }}
@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          node-version: "16.10.0"
+          node-version: '16.10.0'
 
       - name: Setup Pages 🔧
         id: pages
