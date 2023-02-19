@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 import {
   HeaderType,
   ICharacterFrameData,
@@ -73,6 +74,14 @@ const frameDataSlice = createSlice({
     ) {
       const { type, isAscending } = action.payload;
       orderColumn(type, isAscending, state.moves);
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.frameData,
+      };
     },
   },
 });
