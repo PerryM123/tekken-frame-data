@@ -32,6 +32,7 @@ export const getStaticProps = wrapper.getStaticProps(
             : process.env.LOCAL_URL
         }/sampleData/api/characterFrameData/heihachi/sampleResponse.json`
       );
+      console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
       const characterDataResponse: AxiosResponse = await axios.get(
         `${
           process.env.NODE_ENV === 'production'
