@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { loadCharacterDataIntoStore } from '../reducer/characterListSlice';
 import { loadFrameDataIntoStore } from '../reducer/frameDataSlice';
-import { AppState, wrapper } from '../store/basicStore';
+import { AppState, wrapper } from '../store/store';
 // interfaces
 import {
   ICharacterList,
