@@ -1,28 +1,20 @@
-import { Store, applyMiddleware, combineReducers } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
-import frameDataSlice, {
-  initialState as userState,
-} from '../reducer/frameDataSlice';
+import { configureStore, Action, ThunkAction } from '@reduxjs/toolkit'
+import { createWrapper } from 'next-redux-wrapper';
 import reducer from './../reducer';
-import { createWrapper, Context, HYDRATE } from 'next-redux-wrapper';
 
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
-// Logger with default options
-import logger from 'redux-logger';
-const preloadedState = () => {
-  return userState;
-};
-
-export type RootState = ReturnType<typeof createStore.getState>;
-export type StoreState = ReturnType<typeof preloadedState>;
-export type ReduxStore = Store<StoreState>;
-export const createStore = configureStore({
+const makeStore = () =>
+configureStore({
   reducer,
-  devTools: true,
-  middleware: getDefaultMiddleware(),
-});
+  devTools: true
+})
 
-const makeStore = () => createStore;
-export const wrapper = createWrapper<Store<RootState>>(makeStore, {
-  debug: true,
-});
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore["getState"]>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppState,
+  unknown,
+  Action
+>;
+
+export const wrapper = createWrapper<AppStore>(makeStore);

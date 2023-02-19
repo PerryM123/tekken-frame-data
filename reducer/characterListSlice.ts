@@ -20,10 +20,13 @@ const characterListSlice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.log('HYDRATE: ', state, action.payload);
+      console.group('hydrate111');
+      console.log('HYDRATE111: state: ', state);
+      console.log('HYDRATE111: action.payload: ', action.payload);
+      console.groupEnd();
       return {
         ...state,
-        ...action.payload.characters,
+        ...action.payload.characterList,
       };
     },
   },

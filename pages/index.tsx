@@ -4,8 +4,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadCharacterDataIntoStore } from '../reducer/characterListSlice';
 import { loadFrameDataIntoStore } from '../reducer/frameDataSlice';
-// import { RootState, wrapper } from '../store/basicStore';
-import { RootState, wrapper } from '../store/basicStore';
+// import { AppState, wrapper } from '../store/basicStore';
+import { AppState, wrapper } from '../store/basicStore';
 // interfaces
 import {
   ICharacterList,
@@ -24,7 +24,9 @@ interface Props {
 
 export const getStaticProps = wrapper.getStaticProps(
   (store) =>
-    async ({ preview }) => {
+    async ({ params }) => {
+      // we can set the initial state from here
+      // we are setting to false but you can run your custom logic here
       // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
       const frameDataResponse: AxiosResponse<any> = await axios.get(
         'http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json'
@@ -42,7 +44,12 @@ export const getStaticProps = wrapper.getStaticProps(
       };
       store.dispatch(loadFrameDataIntoStore({ ...data.characterFrameData }));
       store.dispatch(loadCharacterDataIntoStore(data.characters));
-      return { props: { ...data } };
+      console.log('State on server', store.getState());
+      return {
+        props: {
+          authState: false,
+        },
+      };
     }
 );
 
@@ -52,10 +59,13 @@ export default function Home(data: Props) {
     console.log('handleFrameDataSelector');
   };
   const dispatch = useDispatch();
-  const theState = useSelector((state: RootState) => state);
-  console.log('theState11111: ', theState);
-  const frameDataInfo = useSelector((state: RootState) => state.frameData);
-  const characterList = useSelector((state: RootState) => state.characterList);
+  const theState = useSelector((state: AppState) => state);
+  console.group('state check');
+  console.log('theState11111.characterList: ', theState.characterList);
+  console.log('theState11111.frameData: ', theState.frameData);
+  console.groupEnd();
+  const frameDataInfo = useSelector((state: AppState) => state.frameData);
+  const characterList = useSelector((state: AppState) => state.characterList);
   // const frameDataInfo: ICharacterFrameData = data.characterFrameData;
   // const characterList: ICharacterItem[] = data.characters;
   const { name, description, moves } = frameDataInfo;

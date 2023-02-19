@@ -90,10 +90,13 @@ const frameDataSlice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.log('HYDRATE: ', state, action.payload);
+      console.group('hydrate222');
+      console.log('HYDRATE222: state: ', state);
+      console.log('HYDRATE222: action.payload: ', action.payload);
+      console.groupEnd();
       return {
         ...state,
-        ...action.payload.characters,
+        ...action.payload.frameData,
       };
     },
   },
