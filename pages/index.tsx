@@ -22,39 +22,38 @@ interface Props {
 }
 
 export const getInitialProps = wrapper.getInitialPageProps(
-  (store) =>
-    async ({}) => {
-      // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
-      const frameDataResponse: AxiosResponse<any> = await axios.get(
-        `${
-          process.env.NODE_ENV === 'production'
-            ? process.env.GITPAGES_URL
-            : process.env.LOCAL_URL
-        }/sampleData/api/characterFrameData/heihachi/sampleResponse.json`
-      );
-      console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
-      const characterDataResponse: AxiosResponse = await axios.get(
-        `${
-          process.env.NODE_ENV === 'production'
-            ? process.env.GITPAGES_URL
-            : process.env.LOCAL_URL
-        }/sampleData/api/allCharacters/sampleResponse.json`
-      );
-      const data: Props = {
-        characterFrameData: {
-          name: frameDataResponse.data.name,
-          description: frameDataResponse.data.description,
-          moves: frameDataResponse.data.moves,
-        },
-        characters: characterDataResponse.data.characters,
-      };
-      store.dispatch(loadFrameDataIntoStore({ ...data.characterFrameData }));
-      store.dispatch(loadCharacterDataIntoStore(data.characters));
-      console.log('store.getState(): ', store.getState());
-      return {
-        props: {},
-      };
-    }
+  (store) => async () => {
+    // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
+    const frameDataResponse: AxiosResponse<any> = await axios.get(
+      `${
+        process.env.NODE_ENV === 'production'
+          ? process.env.GITPAGES_URL
+          : process.env.LOCAL_URL
+      }/sampleData/api/characterFrameData/heihachi/sampleResponse.json`
+    );
+    console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
+    const characterDataResponse: AxiosResponse = await axios.get(
+      `${
+        process.env.NODE_ENV === 'production'
+          ? process.env.GITPAGES_URL
+          : process.env.LOCAL_URL
+      }/sampleData/api/allCharacters/sampleResponse.json`
+    );
+    const data: Props = {
+      characterFrameData: {
+        name: frameDataResponse.data.name,
+        description: frameDataResponse.data.description,
+        moves: frameDataResponse.data.moves,
+      },
+      characters: characterDataResponse.data.characters,
+    };
+    store.dispatch(loadFrameDataIntoStore({ ...data.characterFrameData }));
+    store.dispatch(loadCharacterDataIntoStore(data.characters));
+    console.log('store.getState(): ', store.getState());
+    return {
+      props: {},
+    };
+  }
 );
 
 export default function Home(data: Props) {
