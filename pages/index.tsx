@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import React, { useEffect } from 'react';
+import React from 'react';
 // redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { loadCharacterDataIntoStore } from '../reducer/characterListSlice';
 import { loadFrameDataIntoStore } from '../reducer/frameDataSlice';
 import { AppState, wrapper } from '../store/basicStore';
@@ -53,7 +53,6 @@ export default function Home(data: Props) {
   const handleFrameDataSelector = () => {
     console.log('handleFrameDataSelector');
   };
-  const theState = useSelector((state: AppState) => state);
   const frameDataInfo = useSelector((state: AppState) => state.frameData);
   const characterList = useSelector((state: AppState) => state.characterList);
   const { name, description, moves } = frameDataInfo;
