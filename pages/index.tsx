@@ -26,10 +26,18 @@ export const getStaticProps = wrapper.getStaticProps(
     async ({ params }) => {
       // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
       const frameDataResponse: AxiosResponse<any> = await axios.get(
-        'http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json'
+        `${
+          process.env.NODE_ENV === 'production'
+            ? process.env.GITPAGES_URL
+            : process.env.LOCAL_URL
+        }/sampleData/api/characterFrameData/heihachi/sampleResponse.json`
       );
       const characterDataResponse: AxiosResponse = await axios.get(
-        'http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json'
+        `${
+          process.env.NODE_ENV === 'production'
+            ? process.env.GITPAGES_URL
+            : process.env.LOCAL_URL
+        }/sampleData/api/allCharacters/sampleResponse.json`
       );
       const data: Props = {
         characterFrameData: {
