@@ -49,7 +49,6 @@ export const getStaticProps = wrapper.getStaticProps(
 );
 
 export default function Home(data: Props) {
-  console.log('data: ', data);
   const handleFrameDataSelector = () => {
     console.log('handleFrameDataSelector');
   };

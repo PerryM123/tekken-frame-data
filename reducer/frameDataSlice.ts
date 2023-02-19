@@ -64,18 +64,6 @@ const frameDataSlice = createSlice({
       state.name = action.payload.name;
       state.description = action.payload.description;
       state.moves = action.payload.moves;
-      console.log(
-        'function: loadCharacterDataIntoStore: state.name: ',
-        state.name
-      );
-      console.log(
-        'function: loadCharacterDataIntoStore: state.description: ',
-        state.description
-      );
-      console.log(
-        'function: loadCharacterDataIntoStore: state.moves: ',
-        state.moves
-      );
     },
     updateFrameDataList(
       state,
@@ -90,10 +78,6 @@ const frameDataSlice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.group('hydrate222');
-      console.log('HYDRATE222: state: ', state);
-      console.log('HYDRATE222: action.payload: ', action.payload);
-      console.groupEnd();
       return {
         ...state,
         ...action.payload.frameData,

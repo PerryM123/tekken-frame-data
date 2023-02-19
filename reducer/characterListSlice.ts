@@ -12,18 +12,10 @@ const characterListSlice = createSlice({
   reducers: {
     loadCharacterDataIntoStore(state, action: PayloadAction<ICharacterItem[]>) {
       state.characters = action.payload;
-      console.log(
-        'function: loadCharacterDataIntoStore: state.characters: ',
-        state.characters
-      );
     },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.group('hydrate111');
-      console.log('HYDRATE111: state: ', state);
-      console.log('HYDRATE111: action.payload: ', action.payload);
-      console.groupEnd();
       return {
         ...state,
         ...action.payload.characterList,
