@@ -15,6 +15,7 @@ import {
 import FrameDataTable from '../components/FrameDataTable';
 // styles
 import styles from '../styles/index.module.css';
+import getHostName from '../utils/getHostName';
 
 interface Props {
   characterFrameData: ICharacterFrameData;
@@ -24,12 +25,12 @@ interface Props {
 export const getStaticProps = wrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
-      // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
+      const hostName = getHostName();
       const frameDataResponse: AxiosResponse<any> = await axios.get(
-        'http://localhost:3000/sampleData/api/characterFrameData/heihachi/sampleResponse.json'
+        `${hostName}/sampleData/api/characterFrameData/heihachi/sampleResponse.json`
       );
       const characterDataResponse: AxiosResponse = await axios.get(
-        'http://localhost:3000/sampleData/api/allCharacters/sampleResponse.json'
+        `${hostName}/sampleData/api/allCharacters/sampleResponse.json`
       );
       const data: Props = {
         characterFrameData: {
