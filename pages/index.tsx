@@ -79,7 +79,24 @@ export default function Home(data: Props) {
     <div>
       <nav>
         <h3>character list</h3>
-        <ul></ul>
+        <ul>
+          {characterList.characters.map((item, index) => {
+            return (
+              <li className={styles.characterListItem} key={index}>
+                <a
+                  className={`${
+                    !item.isEntryComplete
+                      ? styles.entryNotComplete
+                      : styles.selectable
+                  } ${styles.characterLink}`}
+                  href="#"
+                >
+                  {item.name}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
       <h1>Heihachi's Frame Data</h1>
       <ul>
