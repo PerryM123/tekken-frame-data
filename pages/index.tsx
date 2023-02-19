@@ -21,9 +21,9 @@ interface Props {
   characters: ICharacterItem[];
 }
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getInitialProps = wrapper.getInitialPageProps(
   (store) =>
-    async ({ params }) => {
+    async ({}) => {
       // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
       const frameDataResponse: AxiosResponse<any> = await axios.get(
         `${
