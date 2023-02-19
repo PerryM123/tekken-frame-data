@@ -25,6 +25,7 @@ export const getStaticProps = wrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
       // TODO: 以下は絶対パスになったりlocalhostのままになったりしてるのでenvファイルは追加必須
+      console.log('dev');
       const frameDataResponse: AxiosResponse<any> = await axios.get(
         `${
           process.env.NODE_ENV === 'production'
