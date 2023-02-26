@@ -1,5 +1,5 @@
 # Tekken Frame Data ver0.4
-※ [English README.md is here！](TODO)👈
+※ [English README.md is here！](README-english.md)👈
 
 ## なぜ作ってるか
 
@@ -7,12 +7,12 @@
 
 ## 機能一覧
 
-- フレーム表の項目の並び順（昇順・降順）を変更できる
-<VIDEO HERE/>
-- テーブルの項目をハイライトできる
-<VIDEO HERE/>
 - 技のコマンドを押すと技の動画が再生する
-<VIDEO HERE/>
+![alt text](./sampleData/video-moves.gif)
+- フレーム表の項目の並び順（昇順・降順）を変更できる
+![alt text](./sampleData/video-change-order.gif)
+- テーブルの項目をハイライトできる
+![alt text](./sampleData/video-highlighting.gif)
 
 
 ## 目的

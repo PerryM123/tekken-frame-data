@@ -1,5 +1,5 @@
 # Tekken Frame Data ver0.4
-※ [日本語のREADME.mdはここ！](TODO)👈
+※ [日本語のREADME.mdはここ！](README.md)👈
 
 ## Why Am I Making This?
 
@@ -9,12 +9,12 @@ Recently I've been getting to a fighting game called Tekken 7. There are various
 for me so I decided to make my own.
 
 ### Included Features Added To The Project
-- ordering the frame data ascending or descending based on ______
-<VIDEO HERE/>
-- highlighting of data within the table
-<VIDEO HERE/>
-- When the command move is pressed, the move will be performed in video
-<VIDEO HERE/>
+- When the command move is pressed, video will be displayed showing the move
+![alt text](./sampleData/video-moves.gif)
+- Ordering the frame data ascending or descending based on ______
+![alt text](./sampleData/video-change-order.gif)
+- Highlighting of data within the table
+![alt text](./sampleData/video-highlighting.gif)
 
 ## The Goal
 
