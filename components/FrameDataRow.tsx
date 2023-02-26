@@ -7,6 +7,7 @@ import { IFrameData, symbolType } from '../interfaces/frameData';
 // style
 import styles from '../styles/frameDataRow.module.css';
 import { AppState } from '../store/store';
+import { basePath } from '../utils/constants';
 
 interface Props {
   frameData: IFrameData;
@@ -68,13 +69,13 @@ const FrameDataRow: NextPage<Props> = (props) => {
             {videoFileName.length && (
               <video
                 key={videoFileName}
-                poster={'/loading.gif'}
+                poster={`${basePath}/loading.gif`}
                 loop
                 width="100%"
                 autoPlay
               >
                 <source
-                  src={`/video/${frameDataInfo.name}/${videoFileName}.mp4`}
+                  src={`${basePath}/video/${frameDataInfo.name}/${videoFileName}.mp4`}
                   type="video/mp4"
                 />
               </video>
