@@ -1,11 +1,12 @@
 // libraries
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
+import { useSelector } from 'react-redux';
 import { NextPage } from 'next';
 // interface
+import { IFrameData, symbolType } from '../interfaces/frameData';
 // style
 import styles from '../styles/frameDataRow.module.css';
-import { IFrameData, symbolType } from '../interfaces/frameData';
-import Modal from './Modal';
+import { AppState } from '../store/store';
 
 interface Props {
   frameData: IFrameData;
@@ -19,9 +20,14 @@ const FrameDataRow: NextPage<Props> = (props) => {
   const { frameData } = props;
   const [videoFileName, setVideo] = useState('');
   const [isOpenModal, setOpenModal] = useState(false);
-  const handleVideo = (element: any) => {
-    console.log('element.target.textContent: ', element.target.textContent);
-    setVideo(element.target.textContent);
+  const [commandMoveText, setCommandMoveText] = useState('');
+  const frameDataInfo = useSelector((state: AppState) => state.frameData);
+
+  const handleVideo = (e: MouseEvent, commandMove: string) => {
+    const textContent = (e.target as HTMLElement).textContent;
+    if (!textContent) return;
+    setVideo(textContent);
+    setCommandMoveText(commandMove);
     setOpenModal(true);
   };
   const getSymbol = (frames: number) => {
@@ -30,13 +36,6 @@ const FrameDataRow: NextPage<Props> = (props) => {
     } else {
       return symbolType.Blank;
     }
-  };
-  const coolVideoSourceHere = () => {
-    return (
-      <video key={videoFileName} loop width="100%" autoPlay>
-        <source src={`/video/heihachi/${videoFileName}.mp4`} type="video/mp4" />
-      </video>
-    );
   };
   const getOnHitStatus = (frames: number) => {
     if (frames === OnHitStatus.KNOCKDOWN) {
@@ -50,8 +49,7 @@ const FrameDataRow: NextPage<Props> = (props) => {
       );
     }
   };
-  const handleCloseModalClick = (e: any) => {
-    // if (e.target !== this) return; // Do nothing
+  const handleCloseModalClick = () => {
     setOpenModal(false);
   };
   return (
@@ -64,15 +62,35 @@ const FrameDataRow: NextPage<Props> = (props) => {
             }}
             className={styles.modalContent}
           >
-            <button onClick={handleCloseModalClick}>close me!</button>
-            {videoFileName.length ? coolVideoSourceHere() : null}
+            <div className={styles.closeButton} onClick={handleCloseModalClick}>
+              +
+            </div>
+            {videoFileName.length && (
+              <video
+                key={videoFileName}
+                poster={'/loading.gif'}
+                loop
+                width="100%"
+                autoPlay
+              >
+                <source
+                  src={`/video/${frameDataInfo.name}/${videoFileName}.mp4`}
+                  type="video/mp4"
+                />
+              </video>
+            )}
+            <div className={styles.modalCommandMove}>{commandMoveText}</div>
           </div>
         </div>
       )}
       <tr>
-        {/* <td>{frameData.input}</td> */}
-        <td>
-          <button onClick={handleVideo}>{frameData.input}</button>
+        <td
+          className={styles.videoLink}
+          onClick={(e: MouseEvent) => {
+            handleVideo(e, frameData.input);
+          }}
+        >
+          <div>{frameData.input}</div>
         </td>
         <td>{frameData.startUp}</td>
         <td>{frameData.hitType}</td>

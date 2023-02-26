@@ -9,15 +9,13 @@ import FrameDataRow from './FrameDataRow';
 import { HeaderType, IFrameData } from '../interfaces/frameData';
 
 interface Props {
-  title: string;
   frameData: IFrameData[];
 }
 
 const FrameDataTable: NextPage<Props> = (props) => {
-  const { frameData, title } = props;
+  const { frameData } = props;
   return (
     <div className={styles.frameDataArea}>
-      <h2>{title}</h2>
       <table className={styles.frameDataTable}>
         <tbody>
           <FrameDataTableHeader />
