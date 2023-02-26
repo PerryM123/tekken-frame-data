@@ -29,8 +29,6 @@ Next.js と express.js と mysql の練習のために作成してます。
 
 https://perrym123.github.io/tekken-frame-data/
 
-![alt text](./sampleData/ver0.3.1.gif)
-
 ## Getting Started
 
 ```

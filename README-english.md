@@ -34,8 +34,6 @@ To get a handle on developing with Next.js, Express.js, and mysql.
 
 https://perrym123.github.io/tekken-frame-data/
 
-![alt text](./sampleData/ver0.3.1.gif)
-
 ## Getting Started
 
 ```
