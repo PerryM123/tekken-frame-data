@@ -15,6 +15,7 @@ import {
 import FrameDataTable from '../components/FrameDataTable';
 // styles
 import styles from '../styles/index.module.css';
+// utils
 import getHostName from '../utils/getHostName';
 
 interface Props {
