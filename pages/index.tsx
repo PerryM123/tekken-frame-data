@@ -15,6 +15,7 @@ import {
 import FrameDataTable from '../components/FrameDataTable';
 // styles
 import styles from '../styles/index.module.css';
+// utils
 import getHostName from '../utils/getHostName';
 
 interface Props {
@@ -26,7 +27,7 @@ export const getStaticProps = wrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
       const hostName = getHostName();
-      const frameDataResponse: AxiosResponse<any> = await axios.get(
+      const frameDataResponse: AxiosResponse = await axios.get(
         `${hostName}/sampleData/api/characterFrameData/heihachi/sampleResponse.json`
       );
       const characterDataResponse: AxiosResponse = await axios.get(
@@ -57,7 +58,7 @@ export default function Home(data: Props) {
   const characterList = useSelector((state: AppState) => state.characterList);
   const { name, description, moves } = frameDataInfo;
   return (
-    <div>
+    <div className={styles.main}>
       <nav>
         <h3>character list</h3>
         <ul>
@@ -80,17 +81,7 @@ export default function Home(data: Props) {
         </ul>
       </nav>
       <h1>Heihachi's Frame Data</h1>
-      <ul>
-        <li>
-          <div onClick={handleFrameDataSelector}>Make all one list</div>
-        </li>
-        <li>
-          <div onClick={handleFrameDataSelector}>
-            Section off by move category
-          </div>
-        </li>
-      </ul>
-      <FrameDataTable title="Standing" frameData={moves} />
+      <FrameDataTable frameData={moves} />
       {/* TODO: 以下の攻撃内容も追加必須 */}
       {/* <FrameDataTable title="Advancing" frameData={frameDataSample.moves} /> */}
       {/* <FrameDataTable title="Dashing" frameData={frameDataSample.moves} /> */}

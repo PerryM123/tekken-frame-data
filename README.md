@@ -1,8 +1,25 @@
-# Tekken Frame Data ver0.3.1
+# Tekken Frame Data ver0.4
+※ [English README.md is here！](README-english.md)👈
 
 ## なぜ作ってるか
 
-最近鉄拳 7 という格闘ゲームにハマっててキャラの攻撃内容がいろんなサイトに記載されてるけど若干見にくいので見やすくなるようなフレームデータ表を作成しました。
+僕は最近鉄拳 7 という格闘ゲームにハマっててキャラの攻撃内容などがいろんなサイトに記載されてるけど若干見にくいので見やすくなるように自分で実装しました。
+
+## 機能一覧
+
+### 1) 技のコマンドを押すと技の動画が再生する
+![alt text](./sampleData/video-moves.gif)
+
+________
+
+### 2) フレーム表の項目の並び順（昇順・降順）を変更できる
+![alt text](./sampleData/video-change-order.gif)
+
+________
+
+### 3) テーブルの項目をハイライトできる
+![alt text](./sampleData/video-highlighting.gif)
+
 
 ## 目的
 
@@ -11,8 +28,6 @@ Next.js と express.js と mysql の練習のために作成してます。
 ## Github Pages
 
 https://perrym123.github.io/tekken-frame-data/
-
-![alt text](./sampleData/ver0.3.1.gif)
 
 ## Getting Started
 
