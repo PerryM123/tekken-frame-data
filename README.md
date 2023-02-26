@@ -7,11 +7,17 @@
 
 ## 機能一覧
 
-- 技のコマンドを押すと技の動画が再生する
+### 1) 技のコマンドを押すと技の動画が再生する
 ![alt text](./sampleData/video-moves.gif)
-- フレーム表の項目の並び順（昇順・降順）を変更できる
+
+________
+
+### 2) フレーム表の項目の並び順（昇順・降順）を変更できる
 ![alt text](./sampleData/video-change-order.gif)
-- テーブルの項目をハイライトできる
+
+________
+
+### 3) テーブルの項目をハイライトできる
 ![alt text](./sampleData/video-highlighting.gif)
 
 

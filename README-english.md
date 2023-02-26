@@ -8,12 +8,20 @@ Recently I've been getting to a fighting game called Tekken 7. There are various
 - does not contain the functionality I wanted
 for me so I decided to make my own.
 
-### Included Features Added To The Project
-- When the command move is pressed, video will be displayed showing the move
+## Included Features Added To The Project
+
+### 1) When the command move is pressed, video will be displayed showing the move
 ![alt text](./sampleData/video-moves.gif)
-- Ordering the frame data ascending or descending based on ______
+
+________
+
+
+### 2) Change the order of table details
 ![alt text](./sampleData/video-change-order.gif)
-- Highlighting of data within the table
+
+________
+
+### 3) Highlighting of data within the table
 ![alt text](./sampleData/video-highlighting.gif)
 
 ## The Goal
