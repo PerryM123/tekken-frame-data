@@ -1,5 +1,5 @@
 .frameDataArea {
-  padding: 0 10px 25px;
+  padding: 0 0 25px;
 }
 
 .frameDataTable {
@@ -18,7 +18,7 @@
   height: 40px;
 }
 
-.frameDataTable > td:hover {
+.frameDataTable td:hover {
   opacity: 0.6;
   background: #f5f5dc;
 }

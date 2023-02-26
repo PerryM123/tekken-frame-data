@@ -58,7 +58,7 @@ export default function Home(data: Props) {
   const characterList = useSelector((state: AppState) => state.characterList);
   const { name, description, moves } = frameDataInfo;
   return (
-    <div>
+    <div className={styles.main}>
       <nav>
         <h3>character list</h3>
         <ul>
