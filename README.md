@@ -45,7 +45,7 @@ $ yarn dev
 - コンテナ管理: Docker
 - データベース: MySQL
 
-※ （[バックエンド開発はここ！](https://github.com/PerryM123/tekken-frame-data)）👈
+※ （[バックエンド開発はここ！](https://github.com/PerryM123/tekken-frame-data-backend)）👈
 
 ## prettier設定について
 

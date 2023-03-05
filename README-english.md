@@ -50,7 +50,7 @@ $ yarn dev
 - Container Mangement: Docker
 - Database: MySQL
 
-※ （[Backend development is here!!](https://github.com/PerryM123/tekken-frame-data)）👈
+※ （[Backend development is here!!](https://github.com/PerryM123/tekken-frame-data-backend)）👈
 
 ## Prettier configurations
 
