@@ -40,9 +40,12 @@ $ yarn dev
 
 ## Techonogies being used
 
-- フロント技術: NextJS
-- サーバーサイド技術: express.JS (TODO: Add repo here)
-- データベース: mysql
+- フロントエンド技術: NextJS
+- バックエンド技術: Express.js
+- コンテナ管理: Docker
+- データベース: MySQL
+
+※ （[バックエンド開発はここ！](https://github.com/PerryM123/tekken-frame-data)）👈
 
 ## prettier設定について
 

@@ -45,9 +45,12 @@ $ yarn dev
 
 ## Techonogies being used
 
-- フロント技術: NextJS
-- サーバーサイド技術: express.JS (TODO: Add repo here)
-- データベース: mysql
+- Frontend: NextJS
+- Backend: Express.js
+- Container Mangement: Docker
+- Database: MySQL
+
+※ （[Backend development is here!!](https://github.com/PerryM123/tekken-frame-data)）👈
 
 ## Prettier configurations
 
