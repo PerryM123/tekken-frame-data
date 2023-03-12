@@ -8,12 +8,13 @@ import { HeaderType } from '../interfaces/frameData';
 import { updateFrameDataList } from '../reducer/frameDataSlice';
 // style
 import styles from '../styles/frameDataTableHeader.module.css';
-interface Props {
+
+export interface Props {
   type:
-    | HeaderType.START_UP
-    | HeaderType.BLOCK
-    | HeaderType.HIT
-    | HeaderType.COUNTER;
+  | HeaderType.START_UP
+  | HeaderType.BLOCK
+  | HeaderType.HIT
+  | HeaderType.COUNTER;
   title: string;
   handleTableHeaderStatus: (
     type:
@@ -26,7 +27,7 @@ interface Props {
   isAscending: boolean;
 }
 
-const Logo = {
+export const Logo = {
   ASCENDING: '▲',
   DESCENDING: '▼',
 };
@@ -36,6 +37,7 @@ const ClickableHeader: NextPage<Props> = (props) => {
   const dispatch = useDispatch();
 
   const clickTableIcon = () => {
+    console.log('clickTableIcon was clicked');
     dispatch(updateFrameDataList({ type, isAscending }));
     handleTableHeaderStatus(type);
   };
@@ -46,7 +48,7 @@ const ClickableHeader: NextPage<Props> = (props) => {
   }
 
   return (
-    <th onClick={clickTableIcon} className={styles.changeOrder}>
+    <th onClick={clickTableIcon} role="button" className={styles.changeOrder}>
       {title}{' '}
       <span
         className={`${styles.tableIcon} ${isActive && styles['js-active']}`}
