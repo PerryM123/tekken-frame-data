@@ -8,12 +8,13 @@ import { HeaderType } from '../interfaces/frameData';
 import { updateFrameDataList } from '../reducer/frameDataSlice';
 // style
 import styles from '../styles/frameDataTableHeader.module.css';
-interface Props {
+
+export interface Props {
   type:
-    | HeaderType.START_UP
-    | HeaderType.BLOCK
-    | HeaderType.HIT
-    | HeaderType.COUNTER;
+  | HeaderType.START_UP
+  | HeaderType.BLOCK
+  | HeaderType.HIT
+  | HeaderType.COUNTER;
   title: string;
   handleTableHeaderStatus: (
     type:
@@ -26,10 +27,14 @@ interface Props {
   isAscending: boolean;
 }
 
-const Logo = {
+export const Logo = {
   ASCENDING: '▲',
   DESCENDING: '▼',
 };
+
+export const constant = {
+  className: "tableIcon"
+} as const;
 
 const ClickableHeader: NextPage<Props> = (props) => {
   const { type, title, handleTableHeaderStatus, isActive, isAscending } = props;
@@ -46,10 +51,11 @@ const ClickableHeader: NextPage<Props> = (props) => {
   }
 
   return (
-    <th onClick={clickTableIcon} className={styles.changeOrder}>
+    <th onClick={clickTableIcon} role="button" className={styles.changeOrder}>
       {title}{' '}
       <span
-        className={`${styles.tableIcon} ${isActive && styles['js-active']}`}
+        className={`${styles[`${constant.className}`]} ${isActive ? styles['js-active'] : ''}`}
+        data-testid={constant.className}
       >
         {isAscending ? Logo.DESCENDING : Logo.ASCENDING}
       </span>
